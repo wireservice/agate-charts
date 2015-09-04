@@ -58,6 +58,8 @@ class Chart(object):
                 self._plot(table)
 
                 pyplot.title(key)
+
+            pyplot.tight_layout(pad=1, w_pad=1, h_pad=1)
         else:
             if not size:
                 size = DEFAULT_SIZE
