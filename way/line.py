@@ -16,6 +16,10 @@ class Line(Chart):
     """
     def __init__(self, x_column_name, y_column_names):
         self._x_column_name = x_column_name
+
+        if isinstance(y_column_names, basestring):
+            y_column_names = [y_column_names]
+
         self._y_column_names = y_column_names
 
     def _plot(self, table):

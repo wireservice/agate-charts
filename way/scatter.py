@@ -9,10 +9,8 @@ class Scatter(Chart):
     """
     Plots a scatter plot.
 
-    :param x_column_name: The name of a column in the source to be used for
-        the horizontal axis.
-    :param y_column_name: The name of a column in the source to be used for
-        the vertical axis.
+    :param x_column_name: Column containing x values for the points to plot.
+    :param y_column_name: Column containing y values for the points to plot.
     """
     def __init__(self, x_column_name, y_column_name):
         self._x_column_name = x_column_name
