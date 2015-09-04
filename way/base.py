@@ -1,4 +1,5 @@
 #!/usr/bin/env python
 
-class Plot(object):
-    pass
+class Chart(object):
+    def run(self):
+        raise NotImplementedError

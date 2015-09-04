@@ -36,8 +36,13 @@ with open('heights.csv') as f:
     # Create the table
     table = Table(reader, COLUMNS)
 
+line = way.Line('month', ['median', 'stdev'])
+
 boys = table.where(lambda r: r['gender'] == 'male')
-table.line('month', 'median', filename='boys.png')
+boys.plot(line, filename='boys.png')
+
+first_year = boys.where(lambda r: r['month'] < 73)
+first_year.plot(way.Bar('month', ['median', 'stdev', '25th']))
 
 genders = table.group_by('gender')
-genders.line('month', 'median')
+genders.plot(line)
