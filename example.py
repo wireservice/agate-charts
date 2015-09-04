@@ -37,7 +37,7 @@ with open('heights.csv') as f:
     table = Table(reader, COLUMNS)
 
 boys = table.where(lambda r: r['gender'] == 'male')
-way.line(boys, 'month', 'median', filename='boys.png')
+table.line('month', 'median', filename='boys.png')
 
 genders = table.group_by('gender')
-way.line(genders, 'month', 'median')
+genders.line('month', 'median')

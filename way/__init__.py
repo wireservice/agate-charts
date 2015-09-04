@@ -1,3 +1,8 @@
 #!/usr/bin/env python
 
-from way.table import *
+import agate
+
+from way.base import *
+from way.line import *
+
+import way.monkey_patch
