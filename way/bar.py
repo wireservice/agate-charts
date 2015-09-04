@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-import matplotlib
-matplotlib.use('TkAgg')
-
 from matplotlib import pyplot
 import agate
 

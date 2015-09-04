@@ -39,10 +39,12 @@ with open('heights.csv') as f:
 line = way.Line('month', ['median', 'stdev'])
 
 boys = table.where(lambda r: r['gender'] == 'male')
-boys.plot(line, filename='boys.png')
+# boys.plot(line)
 
-first_year = boys.where(lambda r: r['month'] < 73)
-first_year.plot(way.Bar('month', ['median', 'stdev', '25th']))
+boys.plot(way.Scatter('median', 'stdev'))
 
-genders = table.group_by('gender')
-genders.plot(line)
+# first_year = boys.where(lambda r: r['month'] < 73)
+# first_year.plot(way.Bar('month', ['median', 'stdev', '25th']))
+
+# genders = table.group_by('gender')
+# genders.plot(line)
