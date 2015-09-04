@@ -6,7 +6,7 @@ import agate
 from matplotlib import pyplot
 
 from way.base import Chart
-from way.colors import ColorGenerator
+from way.colors import Qualitative
 
 class Column(Chart):
     """
@@ -27,7 +27,7 @@ class Column(Chart):
 
     def _plot(self, table):
         positions = range(len(table.columns[self._label_column_name]))
-        colors = ColorGenerator()
+        colors = Qualitative()
         bar_width = 0.35
 
         for i, value_column_name in enumerate(self._value_column_names):

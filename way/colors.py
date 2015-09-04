@@ -1,19 +1,24 @@
 #!/usr/bin/env python
 
-def ColorGenerator():
+def Qualitative():
+    """
+    Color-blind safe qualitiative palette via
+    `Paul Tol <https://personal.sron.nl/~pault/>`_.
+    """
     colors = [
-        '#a6cee3',
-        '#1f78b4',
-        '#b2df8a',
-        '#33a02c',
-        '#fb9a99',
-        '#e31a1c',
-        '#fdbf6f',
-        '#ff7f00',
-        '#cab2d6',
-        '#6a3d9a',
-        '#ffff99',
-        '#b15928'
+        '#332288',
+        '#88CCEE',
+        '#44AA99',
+        '#117733',
+        '#999933',
+        '#DDCC77',
+        '#CC6677',
+        '#882255',
+        '#AA4499',
+        '#661100',
+        '#6699CC',
+        '#AA4466',
+        '#4477AA'
     ]
 
     i = 0

@@ -40,11 +40,11 @@ line = way.Line('month', ['median', 'stdev'])
 
 boys = table.where(lambda r: r['gender'] == 'male')
 # boys.plot(line)
+#
+# boys.plot(way.Scatter('median', 'stdev'))
 
-boys.plot(way.Scatter('median', 'stdev'))
-
-# first_year = boys.where(lambda r: r['month'] < 73)
-# first_year.plot(way.Bar('month', ['median', 'stdev', '25th']))
+first_year = boys.where(lambda r: r['month'] < 73)
+first_year.plot(way.Column('month', ['median', 'stdev', '25th']))
 
 # genders = table.group_by('gender')
 # genders.plot(line)
