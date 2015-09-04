@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-from matplotlib import pyplot
 import agate
+from matplotlib import pyplot
 
 from way.base import Chart
 from way.colors import ColorGenerator
@@ -20,10 +20,6 @@ class Bar(Chart):
         self._value_column_names = value_column_names
 
     def _plot(self, table):
-        """
-        Plot a single bar chart, regardless of whether it is part of a small
-        multiples series.
-        """
         positions = range(len(table.columns[self._label_column_name]))
         colors = ColorGenerator()
         bar_width = 0.35
@@ -49,25 +45,3 @@ class Bar(Chart):
             pyplot.ylabel(self._value_column_names[0])
         else:
             pyplot.legend()
-
-    def run(self, source, filename=None):
-        """
-        Execute a bar plot of source which can be either a :class:`Table`
-        or a :class:`TableSet`. In the latter case the output will be in small
-        multiples format.
-        """
-        if isinstance(source, agate.TableSet):
-            for i, (key, table) in enumerate(source.items()):
-                pyplot.subplot(1, len(source), i + 1)
-                # pyplot.tight_layout(pad=0, w_pad=3)
-
-                self._plot(table)
-
-                pyplot.title(key)
-        else:
-            self._plot(source)
-
-        if filename:
-            pyplot.savefig(filename)
-        else:
-            pyplot.show()
