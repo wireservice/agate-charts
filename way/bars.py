@@ -8,9 +8,9 @@ from matplotlib import pyplot
 from way.base import Chart
 from way.colors import Qualitative
 
-class Column(Chart):
+class Bars(Chart):
     """
-    Plots a column chart.
+    Plots a bar chart.
 
     :param label_column_name: The name of a column in the source to be used for
         the horizontal axis labels.
@@ -28,26 +28,26 @@ class Column(Chart):
     def _plot(self, table):
         positions = range(len(table.columns[self._label_column_name]))
         colors = Qualitative()
-        bar_width = 0.35
+        bar_height = 0.35
 
         for i, value_column_name in enumerate(self._value_column_names):
             series_positions = []
 
             for j in positions:
-                series_positions.append(positions[j] + (i + 1) * bar_width)
+                series_positions.append(positions[j] + (i + 1) * bar_height)
 
-            pyplot.bar(
+            pyplot.barh(
                 series_positions,
                 table.columns[value_column_name],
-                bar_width,
+                bar_height,
                 color=colors.next(),
                 label=value_column_name
             )
 
-        pyplot.xlabel(self._label_column_name)
-        pyplot.xticks(series_positions, table.columns[self._label_column_name])
+        pyplot.ylabel(self._label_column_name)
+        pyplot.yticks(series_positions, table.columns[self._label_column_name])
 
         if len(self._value_column_names) == 1:
-            pyplot.ylabel(self._value_column_names[0])
+            pyplot.xlabel(self._value_column_names[0])
         else:
             pyplot.legend()

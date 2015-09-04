@@ -36,7 +36,7 @@ class TestLineChart(unittest.TestCase):
             ('99th', number_type)
         )
 
-        with open('heights.csv') as f:
+        with open('examples/heights.csv') as f:
             # Create a csv reader
             reader = csv.reader(f)
 
@@ -50,21 +50,21 @@ class TestLineChart(unittest.TestCase):
             os.remove(TEST_FILENAME)
 
     def test_single(self):
-        line = way.Line('month', 'median')
-        self.table.plot(line, filename=TEST_FILENAME)
+        line_chart = way.Lines('month', 'median')
+        self.table.plot(line_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
 
     def test_many(self):
-        line = way.Line('month', ['median', 'stdev'])
-        self.table.plot(line, filename=TEST_FILENAME)
+        line_chart = way.Lines('month', ['median', 'stdev'])
+        self.table.plot(line_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
 
     def test_multiples(self):
         genders = self.table.group_by('gender')
 
-        line = way.Line('month', 'median')
-        genders.plot(line, filename=TEST_FILENAME)
+        line_chart = way.Lines('month', 'median')
+        genders.plot(line_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))

@@ -6,7 +6,10 @@ import agate
 from matplotlib import pyplot
 
 #: Default rendered chart size in inches
-DEFAULT_SIZE = (3, 3)
+DEFAULT_SIZE = (8, 8)
+
+#: Default small multiple chart size in inches
+DEFAULT_MULTIPLE_SIZE = (4, 4)
 
 #: Default rendered chart dpi
 DEFAULT_DPI = 72
@@ -41,7 +44,10 @@ class Chart(object):
             columns = math.ceil(float(count) / rows)
 
             if not size:
-                size = (DEFAULT_SIZE[0] * columns, DEFAULT_SIZE[1] * rows)
+                size = (
+                    DEFAULT_MULTIPLE_SIZE[0] * columns,
+                    DEFAULT_MULTIPLE_SIZE[1] * rows
+                )
 
             pyplot.figure(figsize=size, dpi=dpi)
 

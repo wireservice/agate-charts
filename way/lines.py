@@ -5,7 +5,7 @@ from matplotlib import pyplot
 
 from way.base import Chart
 
-class Line(Chart):
+class Lines(Chart):
     """
     Plots a line chart.
 

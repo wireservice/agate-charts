@@ -13,7 +13,7 @@ import way
 
 TEST_FILENAME = '.test.png'
 
-class TestColumnsChart(unittest.TestCase):
+class TestBarsChart(unittest.TestCase):
     def setUp(self):
         text_type = agate.TextType()
         number_type = agate.NumberType()
@@ -53,8 +53,8 @@ class TestColumnsChart(unittest.TestCase):
         boys = self.table.where(lambda r: r['gender'] == 'male')
         first_year = boys.where(lambda r: r['month'] < 73)
 
-        column_chart = way.Columns('month', 'median')
-        self.table.plot(column_chart, filename=TEST_FILENAME)
+        bar_chart = way.Bars('month', 'median')
+        self.table.plot(bar_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
 
@@ -62,15 +62,15 @@ class TestColumnsChart(unittest.TestCase):
         boys = self.table.where(lambda r: r['gender'] == 'male')
         first_year = boys.where(lambda r: r['month'] < 73)
 
-        column_chart = way.Columns('month', ['median', 'stdev'])
-        self.table.plot(column_chart, filename=TEST_FILENAME)
+        bar_chart = way.Bars('month', ['median', 'stdev'])
+        self.table.plot(bar_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
 
     def test_multiples(self):
         genders = self.table.group_by('gender')
 
-        column_chart = way.Columns('month', 'median')
-        genders.plot(column_chart, filename=TEST_FILENAME)
+        bar_chart = way.Bars('month', 'median')
+        genders.plot(bar_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))

@@ -36,7 +36,7 @@ class TestScatterChart(unittest.TestCase):
             ('99th', number_type)
         )
 
-        with open('heights.csv') as f:
+        with open('examples/heights.csv') as f:
             # Create a csv reader
             reader = csv.reader(f)
 
@@ -50,15 +50,15 @@ class TestScatterChart(unittest.TestCase):
             os.remove(TEST_FILENAME)
 
     def test_single(self):
-        scatter = way.Scatter('median', 'stdev')
-        self.table.plot(scatter, filename=TEST_FILENAME)
+        scatter_chart = way.Scatter('median', 'stdev')
+        self.table.plot(scatter_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
 
     def test_multiples(self):
         genders = self.table.group_by('gender')
 
-        scatter = way.Scatter('median', 'stdev')
-        genders.plot(scatter, filename=TEST_FILENAME)
+        scatter_chart = way.Scatter('median', 'stdev')
+        genders.plot(scatter_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
