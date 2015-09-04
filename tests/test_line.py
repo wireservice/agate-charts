@@ -13,7 +13,7 @@ import way
 
 TEST_FILENAME = '.test.png'
 
-class TestBarChart(unittest.TestCase):
+class TestLineChart(unittest.TestCase):
     def setUp(self):
         text_type = agate.TextType()
         number_type = agate.NumberType()

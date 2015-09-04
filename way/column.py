@@ -8,9 +8,9 @@ from matplotlib import pyplot
 from way.base import Chart
 from way.colors import ColorGenerator
 
-class Bar(Chart):
+class Column(Chart):
     """
-    Plots a bar chart.
+    Plots a column chart.
 
     :param label_column_name: The name of a column in the source to be used for
         the horizontal axis labels.
