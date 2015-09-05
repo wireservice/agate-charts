@@ -39,7 +39,9 @@ class Chart(object):
         :param dpi: A number defining the pixels-per-inch to render.
         """
         if isinstance(source, agate.TableSet):
-            count = len(source)
+            # Plus one for legend spot
+            count = len(source) + 1
+
             rows = int(math.sqrt(count))
             columns = math.ceil(float(count) / rows)
 
@@ -58,8 +60,11 @@ class Chart(object):
 
                 pyplot.title(key)
 
-                if i == 0 and len(self._y_column_names) > 1:
-                    pyplot.legend()
+            axes = pyplot.subplot(rows, columns, i + 2)
+            pyplot.axis('off')
+            pos = axes.get_position()
+
+            self._legend(figure, pos)
 
             pyplot.tight_layout(pad=1, w_pad=1, h_pad=1)
         else:

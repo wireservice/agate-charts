@@ -4,6 +4,7 @@ import agate
 from matplotlib import pyplot
 
 from fever.base import Chart
+from fever.colors import Qualitative
 
 class Lines(Chart):
     """
@@ -23,11 +24,14 @@ class Lines(Chart):
         self._y_column_names = y_column_names
 
     def _plot(self, table):
+        colors = Qualitative()
+
         for i, y_column_name in enumerate(self._y_column_names):
             pyplot.plot(
                 table.columns[self._x_column_name],
                 table.columns[y_column_name],
                 linewidth=2,
+                color=colors.next(),
                 label=y_column_name
             )
 
@@ -35,3 +39,16 @@ class Lines(Chart):
 
         if len(self._y_column_names) == 1:
             pyplot.ylabel(self._y_column_names[0])
+
+    def _legend(self, figure, pos):
+        import matplotlib.lines as mlines
+
+        colors = Qualitative()
+        lines = []
+        labels = []
+
+        for column_name in self._y_column_names:
+            lines.append(mlines.Line2D([], [], linewidth=2, color=colors.next()))
+            labels.append(column_name)
+
+        figure.legend(lines, labels, loc=(pos.xmin, pos.ymin))
