@@ -65,8 +65,7 @@ class Chart(object):
             if self._show_legend():
                 axes = pyplot.subplot(rows, columns, i + 2)
                 pyplot.axis('off')
-                pos = axes.get_position()
-                legend.render(figure, pos)
+                axes.legend(*legend, loc='center left', bbox_to_anchor=(0, 0.5))
 
             pyplot.tight_layout(pad=1, w_pad=1, h_pad=1)
         else:
@@ -74,24 +73,16 @@ class Chart(object):
                 size = DEFAULT_SIZE
 
             pyplot.figure(figsize=size, dpi=dpi)
+            axes = pyplot.subplot(1, 1, 1)
 
-            self._plot(source)
+            legend = self._plot(source)
 
-            pyplot.legend()
+            bbox = axes.get_position()
+            axes.set_position([bbox.x0, bbox.y0, bbox.width * 0.8, bbox.height])
+
+            axes.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
         if filename:
             pyplot.savefig(filename)
         else:
             pyplot.show()
-
-class Legend(object):
-    """
-    Class that captures legend information for a plot so it can be redrawn
-    elsewhere on the figure.
-    """
-    def __init__(self, marks, labels):
-        self.marks = marks
-        self.labels = labels
-
-    def render(self, figure, loc):
-        figure.legend(self.marks, self.labels, loc=(loc.xmin, loc.ymin))

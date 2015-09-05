@@ -3,7 +3,7 @@
 import agate
 from matplotlib import pyplot
 
-from fever.base import Chart, Legend
+from fever.base import Chart
 from fever.colors import Qualitative
 
 class Lines(Chart):
@@ -46,4 +46,4 @@ class Lines(Chart):
         if len(self._y_column_names) == 1:
             pyplot.ylabel(self._y_column_names[0])
 
-        return Legend(lines, self._y_column_names)
+        return (lines, self._y_column_names)
