@@ -12,13 +12,13 @@ if sys.version_info == (2, 6):
     install_requires.append('ordereddict>=1.1')
 
 setup(
-    name='way',
+    name='fever',
     version='0.1.0',
-    description='way is an exploratory charting library built on the agate data analysis library.',
+    description='fever is an exploratory charting library built on the agate data analysis library.',
     long_description=open('README').read(),
     author='Christopher Groskopf',
     author_email='staringmonkey@gmail.com',
-    url='http://way.readthedocs.org/',
+    url='http://fever.readthedocs.org/',
     license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -39,7 +39,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     packages=[
-        'way'
+        'fever'
     ],
     install_requires=install_requires
 )

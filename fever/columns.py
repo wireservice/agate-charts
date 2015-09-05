@@ -5,8 +5,8 @@ import collections
 import agate
 from matplotlib import pyplot
 
-from way.base import Chart
-from way.colors import Qualitative
+from fever.base import Chart
+from fever.colors import Qualitative
 
 class Columns(Chart):
     """

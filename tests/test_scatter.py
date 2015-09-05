@@ -9,7 +9,7 @@ except ImportError:
     import unittest
 
 import agate
-import way
+import fever
 
 TEST_FILENAME = '.test.png'
 
@@ -50,7 +50,7 @@ class TestScatterChart(unittest.TestCase):
             os.remove(TEST_FILENAME)
 
     def test_single(self):
-        scatter_chart = way.Scatter('median', 'stdev')
+        scatter_chart = fever.Scatter('median', 'stdev')
         self.table.plot(scatter_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
@@ -58,7 +58,7 @@ class TestScatterChart(unittest.TestCase):
     def test_multiples(self):
         genders = self.table.group_by('gender')
 
-        scatter_chart = way.Scatter('median', 'stdev')
+        scatter_chart = fever.Scatter('median', 'stdev')
         genders.plot(scatter_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))

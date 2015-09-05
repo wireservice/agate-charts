@@ -3,7 +3,7 @@
 import csv
 
 from agate import Table, DateType, NumberType, TextType, Sum, StDev
-import way
+import fever
 
 text_type = TextType()
 number_type = NumberType()
@@ -26,7 +26,7 @@ COLUMNS = (
     ('99th', number_type)
 )
 
-with open('heights.csv') as f:
+with open('examples/heights.csv') as f:
     # Create a csv reader
     reader = csv.reader(f)
 
@@ -36,15 +36,15 @@ with open('heights.csv') as f:
     # Create the table
     table = Table(reader, COLUMNS)
 
-line_chart = way.Lines('month', ['median', 'stdev'])
+line_chart = fever.Lines('month', ['median', 'stdev'])
 
 boys = table.where(lambda r: r['gender'] == 'male')
 # boys.plot(line_chart)
 #
-# boys.plot(way.Scatter('median', 'stdev'))
+# boys.plot(fever.Scatter('median', 'stdev'))
 
 # first_year = boys.where(lambda r: r['month'] < 73)
-# first_year.plot(way.Columns('month', ['median', 'stdev', '25th']))
+# first_year.plot(fever.Columns('month', ['median', 'stdev', '25th']))
 
 genders = table.group_by('gender')
 genders.plot(line_chart, filename='genders.png')

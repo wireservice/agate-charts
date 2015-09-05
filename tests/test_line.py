@@ -9,7 +9,7 @@ except ImportError:
     import unittest
 
 import agate
-import way
+import fever
 
 TEST_FILENAME = '.test.png'
 
@@ -50,13 +50,13 @@ class TestLineChart(unittest.TestCase):
             os.remove(TEST_FILENAME)
 
     def test_single(self):
-        line_chart = way.Lines('month', 'median')
+        line_chart = fever.Lines('month', 'median')
         self.table.plot(line_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
 
     def test_many(self):
-        line_chart = way.Lines('month', ['median', 'stdev'])
+        line_chart = fever.Lines('month', ['median', 'stdev'])
         self.table.plot(line_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
@@ -64,7 +64,7 @@ class TestLineChart(unittest.TestCase):
     def test_multiples(self):
         genders = self.table.group_by('gender')
 
-        line_chart = way.Lines('month', 'median')
+        line_chart = fever.Lines('month', 'median')
         genders.plot(line_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))

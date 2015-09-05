@@ -3,7 +3,7 @@
 import agate
 from matplotlib import pyplot
 
-from way.base import Chart
+from fever.base import Chart
 
 class Lines(Chart):
     """

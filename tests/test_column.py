@@ -9,7 +9,7 @@ except ImportError:
     import unittest
 
 import agate
-import way
+import fever
 
 TEST_FILENAME = '.test.png'
 
@@ -53,7 +53,7 @@ class TestColumnsChart(unittest.TestCase):
         boys = self.table.where(lambda r: r['gender'] == 'male')
         first_year = boys.where(lambda r: r['month'] < 73)
 
-        column_chart = way.Columns('month', 'median')
+        column_chart = fever.Columns('month', 'median')
         self.table.plot(column_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
@@ -62,7 +62,7 @@ class TestColumnsChart(unittest.TestCase):
         boys = self.table.where(lambda r: r['gender'] == 'male')
         first_year = boys.where(lambda r: r['month'] < 73)
 
-        column_chart = way.Columns('month', ['median', 'stdev'])
+        column_chart = fever.Columns('month', ['median', 'stdev'])
         self.table.plot(column_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
@@ -70,7 +70,7 @@ class TestColumnsChart(unittest.TestCase):
     def test_multiples(self):
         genders = self.table.group_by('gender')
 
-        column_chart = way.Columns('month', 'median')
+        column_chart = fever.Columns('month', 'median')
         genders.plot(column_chart, filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
