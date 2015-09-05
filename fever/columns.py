@@ -25,9 +25,13 @@ class Columns(Chart):
 
         self._value_column_names = value_column_names
 
+    def _show_legend(self):
+        return len(self._value_column_names) > 1
+
     def _plot(self, table):
         positions = range(len(table.columns[self._label_column_name]))
         colors = Qualitative()
+        bars = []
         bar_width = 0.35
 
         for i, value_column_name in enumerate(self._value_column_names):
@@ -36,7 +40,7 @@ class Columns(Chart):
             for j in positions:
                 series_positions.append(positions[j] + (i + 1) * bar_width)
 
-            pyplot.bar(
+            plot_bars = pyplot.bar(
                 series_positions,
                 table.columns[value_column_name],
                 bar_width,
@@ -44,10 +48,12 @@ class Columns(Chart):
                 label=value_column_name
             )
 
+            bars.extend(plot_bars)
+
         pyplot.xlabel(self._label_column_name)
         pyplot.xticks(series_positions, table.columns[self._label_column_name])
 
         if len(self._value_column_names) == 1:
             pyplot.ylabel(self._value_column_names[0])
-        else:
-            pyplot.legend()
+
+        return (bars, self._value_column_names)

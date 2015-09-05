@@ -16,6 +16,9 @@ class Scatter(Chart):
         self._x_column_name = x_column_name
         self._y_column_name = y_column_name
 
+    def _show_legend(self):
+        return False
+
     def _plot(self, table):
         pyplot.scatter(
             table.columns[self._x_column_name],

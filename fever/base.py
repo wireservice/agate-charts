@@ -53,7 +53,7 @@ class Chart(object):
                     DEFAULT_MULTIPLE_SIZE[1] * rows
                 )
 
-            figure = pyplot.figure(figsize=size, dpi=dpi)
+            pyplot.figure(figsize=size, dpi=dpi)
 
             for i, (key, table) in enumerate(source.items()):
                 axes = pyplot.subplot(rows, columns, i + 1)
@@ -73,9 +73,12 @@ class Chart(object):
             pyplot.tight_layout(pad=1, w_pad=1, h_pad=1)
         else:
             if not size:
+                size = DEFAULT_SIZE
+
+            if self._show_legend():
                 size = (
-                    DEFAULT_SIZE[0] * 1.2,
-                    DEFAULT_SIZE[1]
+                    size[0] * 1.2,
+                    size[1]
                 )
 
             pyplot.figure(figsize=size, dpi=dpi)
@@ -84,12 +87,13 @@ class Chart(object):
             legend = self._plot(source)
 
             pyplot.grid(b=True, which='major', color='0.85', linestyle='-')
-            pyplot.set_axisbelow(True)
+            axes.set_axisbelow(True)
 
-            bbox = axes.get_position()
-            axes.set_position([bbox.x0, bbox.y0, bbox.width / 1.2, bbox.height])
+            if self._show_legend():
+                bbox = axes.get_position()
+                axes.set_position([bbox.x0, bbox.y0, bbox.width / 1.2, bbox.height])
 
-            axes.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+                axes.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
         if filename:
             pyplot.savefig(filename)
