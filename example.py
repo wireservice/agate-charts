@@ -39,12 +39,12 @@ with open('examples/heights.csv') as f:
 line_chart = fever.Lines('month', ['median', 'stdev'])
 
 boys = table.where(lambda r: r['gender'] == 'male')
-# boys.plot(line_chart)
+boys.plot(line_chart)
 #
 # boys.plot(fever.Scatter('median', 'stdev'))
 
 # first_year = boys.where(lambda r: r['month'] < 73)
 # first_year.plot(fever.Columns('month', ['median', 'stdev', '25th']))
 
-genders = table.group_by('gender')
-genders.plot(line_chart)
+# genders = table.group_by('gender')
+# genders.plot(line_chart)

@@ -39,8 +39,10 @@ class Chart(object):
         :param dpi: A number defining the pixels-per-inch to render.
         """
         if isinstance(source, agate.TableSet):
-            # Plus one for legend spot
-            count = len(source) + 1
+            count = len(source)
+
+            if self._show_legend():
+                count += 1
 
             rows = int(math.sqrt(count))
             columns = math.ceil(float(count) / rows)
@@ -56,15 +58,15 @@ class Chart(object):
             for i, (key, table) in enumerate(source.items()):
                 pyplot.subplot(rows, columns, i + 1)
 
-                self._plot(table)
+                legend = self._plot(table)
 
                 pyplot.title(key)
 
-            axes = pyplot.subplot(rows, columns, i + 2)
-            pyplot.axis('off')
-            pos = axes.get_position()
-
-            self._legend(figure, pos)
+            if self._show_legend():
+                axes = pyplot.subplot(rows, columns, i + 2)
+                pyplot.axis('off')
+                pos = axes.get_position()
+                legend.render(figure, pos)
 
             pyplot.tight_layout(pad=1, w_pad=1, h_pad=1)
         else:
@@ -81,3 +83,15 @@ class Chart(object):
             pyplot.savefig(filename)
         else:
             pyplot.show()
+
+class Legend(object):
+    """
+    Class that captures legend information for a plot so it can be redrawn
+    elsewhere on the figure.
+    """
+    def __init__(self, marks, labels):
+        self.marks = marks
+        self.labels = labels
+
+    def render(self, figure, loc):
+        figure.legend(self.marks, self.labels, loc=(loc.xmin, loc.ymin))
