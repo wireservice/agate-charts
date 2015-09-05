@@ -14,7 +14,7 @@ if sys.version_info == (2, 6):
 setup(
     name='fever',
     version='0.1.0',
-    description='fever is an exploratory charting library built on the agate data analysis library.',
+    description='fever is an exploratory charting addon for the agate data analysis library.',
     long_description=open('README').read(),
     author='Christopher Groskopf',
     author_email='staringmonkey@gmail.com',

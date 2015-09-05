@@ -49,15 +49,17 @@ class Chart(object):
                     DEFAULT_MULTIPLE_SIZE[1] * rows
                 )
 
-            pyplot.figure(figsize=size, dpi=dpi)
+            figure = pyplot.figure(figsize=size, dpi=dpi)
 
             for i, (key, table) in enumerate(source.items()):
                 pyplot.subplot(rows, columns, i + 1)
-                # pyplot.tight_layout(pad=0, w_pad=3)
 
                 self._plot(table)
 
                 pyplot.title(key)
+
+                if i == 0 and len(self._y_column_names) > 1:
+                    pyplot.legend()
 
             pyplot.tight_layout(pad=1, w_pad=1, h_pad=1)
         else:
@@ -67,6 +69,8 @@ class Chart(object):
             pyplot.figure(figsize=size, dpi=dpi)
 
             self._plot(source)
+
+            pyplot.legend()
 
         if filename:
             pyplot.savefig(filename)

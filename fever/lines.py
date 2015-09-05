@@ -35,5 +35,3 @@ class Lines(Chart):
 
         if len(self._y_column_names) == 1:
             pyplot.ylabel(self._y_column_names[0])
-        else:
-            pyplot.legend()

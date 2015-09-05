@@ -47,4 +47,4 @@ boys = table.where(lambda r: r['gender'] == 'male')
 # first_year.plot(fever.Columns('month', ['median', 'stdev', '25th']))
 
 genders = table.group_by('gender')
-genders.plot(line_chart, filename='genders.png')
+genders.plot(line_chart)
