@@ -5,16 +5,14 @@ import sys
 
 install_requires = [
     'six==1.6.1',
-    'python-dateutil>=2.2'
+    'agate>=0.7.0',
+    'matplotlib>=1.4.3'
 ]
-
-if sys.version_info == (2, 6):
-    install_requires.append('ordereddict>=1.1')
 
 setup(
     name='fever',
     version='0.1.0',
-    description='fever is an exploratory charting addon for the agate data analysis library.',
+    description='fever is an Python exploratory charting library built on the agate data analysis library.',
     long_description=open('README').read(),
     author='Christopher Groskopf',
     author_email='staringmonkey@gmail.com',
