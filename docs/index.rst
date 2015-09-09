@@ -8,7 +8,7 @@ About
 .. include:: ../README
 
 Why fever?
-========
+==========
 
 * A clean, readable API.
 * Automatically infers good defaults from your data.
@@ -48,15 +48,14 @@ fever supports the following versions of Python:
 
 It works wherever `matplotlib <http://matplotlib.org/>`_ works.
 
-Usage
-=====
+Table of contents
+=================
 
-TKTK
+.. toctree::
+    :maxdepth: 2
 
-API
-===
-
-TKTK
+    tutorial
+    api
 
 Authors
 =======

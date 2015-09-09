@@ -5,7 +5,7 @@ import sys
 
 install_requires = [
     'six==1.6.1',
-    'agate>=0.7.0',
+    'agate>=0.8.0',
     'matplotlib>=1.4.3'
 ]
 
@@ -38,7 +38,8 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     packages=[
-        'fever'
+        'fever',
+        'fever.charts'
     ],
     install_requires=install_requires
 )

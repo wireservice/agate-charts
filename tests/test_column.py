@@ -15,8 +15,8 @@ TEST_FILENAME = '.test.png'
 
 class TestColumnsChart(unittest.TestCase):
     def setUp(self):
-        text_type = agate.TextType()
-        number_type = agate.NumberType()
+        text_type = agate.Text()
+        number_type = agate.Number()
 
         columns = (
             ('gender', text_type),

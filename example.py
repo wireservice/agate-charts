@@ -4,7 +4,7 @@ import csv
 import os
 import shutil
 
-from agate import Table, DateType, NumberType, TextType, Sum, StDev
+import agate
 import fever
 
 OUTPUT_DIR = 'samples'
@@ -15,10 +15,10 @@ if not os.path.exists(OUTPUT_DIR):
 for filename in os.listdir(OUTPUT_DIR):
     os.remove(os.path.join(OUTPUT_DIR, filename))
 
-text_type = TextType()
-number_type = NumberType()
+text_type = agate.Text()
+number_type = agate.Number()
 
-COLUMNS = (
+columns = (
     ('gender', text_type),
     ('month', number_type),
     ('median', number_type),
@@ -36,15 +36,7 @@ COLUMNS = (
     ('99th', number_type)
 )
 
-with open('examples/heights.csv') as f:
-    # Create a csv reader
-    reader = csv.reader(f)
-
-    # Skip header
-    next(f)
-
-    # Create the table
-    table = Table(reader, COLUMNS)
+table = agate.Table.from_csv('examples/heights.csv', columns)
 
 i = 1
 
@@ -61,6 +53,8 @@ samples = {
 boys = table.where(lambda r: r['gender'] == 'male')
 
 for name in ['line_chart_simple', 'line_chart_complex']:
+    print(name)
+
     chart = samples[name]
     boys.plot(chart, filename=os.path.join(OUTPUT_DIR, '%i_%s.png' % (i, name)))
 
@@ -69,6 +63,8 @@ for name in ['line_chart_simple', 'line_chart_complex']:
 first_year = boys.where(lambda r: r['month'] < 73)
 
 for name in ['column_chart_simple', 'column_chart_complex', 'bar_chart_simple', 'bar_chart_complex', 'scatter_chart']:
+    print(name)
+
     chart = samples[name]
     first_year.plot(chart, filename=os.path.join(OUTPUT_DIR, '%i_%s.png' % (i, name)))
 
@@ -77,6 +73,8 @@ for name in ['column_chart_simple', 'column_chart_complex', 'bar_chart_simple', 
 genders = table.group_by('gender')
 
 for name in ['line_chart_simple', 'line_chart_complex']:
+    print(name)
+
     chart = samples[name]
     genders.plot(chart, filename=os.path.join(OUTPUT_DIR, '%i_%s_multiples.png' % (i, name)))
 
@@ -85,6 +83,8 @@ for name in ['line_chart_simple', 'line_chart_complex']:
 genders_first_year = genders.where(lambda r: r['month'] < 73)
 
 for name in ['column_chart_simple', 'column_chart_complex', 'bar_chart_simple', 'bar_chart_complex', 'scatter_chart']:
+    print(name)
+
     chart = samples[name]
     genders_first_year.plot(chart, filename=os.path.join(OUTPUT_DIR, '%i_%s_multiples.png' % (i, name)))
 

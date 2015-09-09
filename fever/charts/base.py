@@ -27,11 +27,12 @@ class Chart(object):
 
     def run(self, source, filename=None, size=None, dpi=DEFAULT_DPI):
         """
-        Execute a plot of the source which can be either a :class:`Table`
-        or a :class:`TableSet`. In the latter case the output will be in small
-        multiples format.
+        Execute a plot of the source which can be either a :class:`agate.Table`
+        or a :class:`agate.TableSet`. In the latter case the output will be in
+        small multiples format.
 
-        :param source: A :class:`Table` or :class:`TableSet` to chart.
+        :param source: A :class:`agate.Table` or :class:`agate.TableSet` to
+            chart.
         :param filename: A filename to render to. If not specified will render
             to screen in "interactive mode".
         :param size: A (width, height) tuple in inches defining the size of the
