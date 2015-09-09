@@ -7,7 +7,7 @@ import shutil
 import agate
 import fever
 
-OUTPUT_DIR = 'samples'
+OUTPUT_DIR = 'docs/samples'
 
 if not os.path.exists(OUTPUT_DIR):
     os.mkdir(OUTPUT_DIR)
