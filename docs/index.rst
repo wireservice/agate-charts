@@ -13,7 +13,7 @@ Why fever?
 * A clean, readable API.
 * Automatically infers good defaults from your data.
 * An order of magnitude simpler than the alternatives.
-* Fast, fast, fast.
+* Chart, code, chart, code. No context switching.
 
 Installation
 ============
@@ -42,11 +42,13 @@ Supported platforms
 
 fever supports the following versions of Python:
 
-* Python 2.6+
-* Python 3.2+
+* Python 2.6 (tests pass, but some dependencies claim not to support it)
+* Python 2.7
+* Python 3.2
+* Python 3.3
 * Latest `PyPy <http://pypy.org/>`_
 
-It works wherever `matplotlib <http://matplotlib.org/>`_ works.
+It works anywhere `matplotlib <http://matplotlib.org/>`_ works.
 
 Table of contents
 =================
