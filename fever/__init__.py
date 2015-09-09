@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 
-from fever.base import *
-from fever.bars import *
-from fever.columns import *
-from fever.lines import *
-from fever.scatter import *
+from fever.charts import *
 
 import fever.monkey_patch

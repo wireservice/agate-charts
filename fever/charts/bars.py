@@ -13,9 +13,10 @@ class Bars(Chart):
     Plots a bar chart.
 
     :param label_column_name: The name of a column in the source to be used for
-        the horizontal axis labels.
+        the vertical axis labels. Must refer to a :class:`agate.TextColumn`.
     :param value_column_names: One or more column names in the source, each of
-        which will used to define the vertical height of a bar.
+        which will used to define the horizontal width of a bar. Must refer to a
+        :class:`agate.NumberColumn`.
     """
     def __init__(self, label_column_name, value_column_names):
         self._label_column_name = label_column_name
@@ -29,12 +30,23 @@ class Bars(Chart):
         return len(self._value_column_names) > 1
 
     def _plot(self, table):
-        positions = range(len(table.columns[self._label_column_name]))
+        label_column = table.columns[self._label_column_name]
+
+        if not isinstance(label_column, agate.TextColumn) and \
+            not isinstance(label_column, agate.NumberColumn):
+            raise ValueError('Only TextColumn and NumberColumn are supported for bar chart labels.')
+
+        positions = range(len(label_column))
         colors = Qualitative()
         bars = []
         bar_height = 0.35
 
         for i, value_column_name in enumerate(self._value_column_names):
+            value_column = table.columns[value_column_name]
+
+            if not isinstance(value_column, agate.NumberColumn):
+                raise ValueError('Only NumberColumn is supported for bar chart values.')
+
             series_positions = []
 
             for j in positions:
@@ -42,7 +54,7 @@ class Bars(Chart):
 
             plot_bars = pyplot.barh(
                 series_positions,
-                table.columns[value_column_name],
+                value_column,
                 bar_height,
                 color=colors.next(),
                 label=value_column_name
