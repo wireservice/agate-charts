@@ -15,77 +15,87 @@ if not os.path.exists(OUTPUT_DIR):
 for filename in os.listdir(OUTPUT_DIR):
     os.remove(os.path.join(OUTPUT_DIR, filename))
 
-text_type = agate.Text()
-number_type = agate.Number()
+tester = agate.TypeTester(force={
+    ' Date': agate.Date('%Y-%m-%d')
+})
 
-columns = (
-    ('gender', text_type),
-    ('month', number_type),
-    ('median', number_type),
-    ('stdev', number_type),
-    ('1st', number_type),
-    ('3rd', number_type),
-    ('5th', number_type),
-    ('15th', number_type),
-    ('25th', number_type),
-    ('50th', number_type),
-    ('75th', number_type),
-    ('85th', number_type),
-    ('95th', number_type),
-    ('97th', number_type),
-    ('99th', number_type)
-)
+emissions = agate.Table.from_csv('examples/epa-emissions-20150910.csv', tester)
 
-table = agate.Table.from_csv('examples/heights.csv', columns)
+emissions = emissions.compute([
+    ('day', agate.Formula(agate.Number(), lambda r: r[' Date'].day)),
+    ('so2', agate.Formula(agate.Number(), lambda r: r[' SO2 (tons)'] or 0)),
+    ('noX', agate.Formula(agate.Number(), lambda r: r[' NOx (tons)'] or 0)),
+    ('co2', agate.Formula(agate.Number(), lambda r: r[' CO2 (short tons)'] or 0))
+])
 
-i = 1
+states = emissions.group_by('State')
+new_york = states['NY']
 
-samples = {
-    'line_chart_simple': fever.Lines('month', 'median'),
-    'line_chart_complex': fever.Lines('month', ['median', 'stdev']),
-    'column_chart_simple': fever.Columns('month', 'median'),
-    'column_chart_complex': fever.Columns('month', ['median', 'stdev']),
-    'bar_chart_simple': fever.Bars('month', 'median'),
-    'bar_chart_complex': fever.Bars('month', ['median', 'stdev']),
-    'scatter_chart': fever.Scatter('median', 'stdev')
+# NB: key_type shouldn't be necessary--agate bug #234
+days = emissions.group_by('day', key_type=agate.Number())
+day_totals = days.aggregate([
+    ('so2', agate.Sum(), 'so2'),
+    ('co2', agate.Sum(), 'co2'),
+    ('noX', agate.Sum(), 'noX')
+])
+
+dates = emissions.group_by(' Date', key_type=agate.Date('%Y-%m-%d'))
+date_totals = dates.aggregate([
+    ('so2', agate.Sum(), 'so2'),
+    ('co2', agate.Sum(), 'co2'),
+    ('noX', agate.Sum(), 'noX')
+])
+
+date_totals.pretty_print(5)
+
+single_series = {
+    'line_chart_simple': fever.Lines('day', 'co2'),
+    'column_chart_simple': fever.Columns('day', 'co2'),
+    'bar_chart_simple': fever.Bars('day', 'co2'),
+    'scatter_chart': fever.Scatter('co2', 'so2')
 }
 
-boys = table.where(lambda r: r['gender'] == 'male')
+time_series = {
+    'line_chart_dates': fever.Lines(' Date', 'co2'),
+    'column_chart_dates': fever.Columns(' Date', 'co2'),
+    'bar_chart_dates': fever.Bars(' Date', 'co2')
+}
 
-for name in ['line_chart_simple', 'line_chart_complex']:
+multiple_series = {
+    'line_chart_complex': fever.Lines('day', ['so2', 'noX']),
+    'column_chart_complex': fever.Columns('day', ['so2', 'noX']),
+    'bar_chart_complex': fever.Bars('day', ['so2', 'noX']),
+}
+
+with_dates = {
+    'line_chart_dates': fever.Lines(' Date', 'so2'),
+    'column_chart_dates': fever.Columns(' Date', 'so2'),
+    'line_chart_dates': fever.Lines(' Date', 'so2'),
+}
+
+# Not small multiples
+for name, chart in single_series.items():
     print(name)
 
-    chart = samples[name]
-    boys.plot(chart, filename=os.path.join(OUTPUT_DIR, '%i_%s.png' % (i, name)))
+    day_totals.plot(chart, filename=os.path.join(OUTPUT_DIR, '%s.png' % name))
 
-    i += 1
-
-first_year = boys.where(lambda r: r['month'] < 73)
-
-for name in ['column_chart_simple', 'column_chart_complex', 'bar_chart_simple', 'bar_chart_complex', 'scatter_chart']:
+for name, chart in time_series.items():
     print(name)
 
-    chart = samples[name]
-    first_year.plot(chart, filename=os.path.join(OUTPUT_DIR, '%i_%s.png' % (i, name)))
+    date_totals.plot(chart, filename=os.path.join(OUTPUT_DIR, '%s.png' % name))
 
-    i += 1
-
-genders = table.group_by('gender')
-
-for name in ['line_chart_simple', 'line_chart_complex']:
+for name, chart in multiple_series.items():
     print(name)
 
-    chart = samples[name]
-    genders.plot(chart, filename=os.path.join(OUTPUT_DIR, '%i_%s_multiples.png' % (i, name)))
+    day_totals.plot(chart, filename=os.path.join(OUTPUT_DIR, '%s.png' % name))
 
-    i += 1
-
-genders_first_year = genders.where(lambda r: r['month'] < 73)
-
-for name in ['column_chart_simple', 'column_chart_complex', 'bar_chart_simple', 'bar_chart_complex', 'scatter_chart']:
+# Small multiples
+for name, chart in single_series.items():
     print(name)
 
-    chart = samples[name]
-    genders_first_year.plot(chart, filename=os.path.join(OUTPUT_DIR, '%i_%s_multiples.png' % (i, name)))
+    states.plot(chart, filename=os.path.join(OUTPUT_DIR, '%s_multiples.png' % name))
 
-    i += 1
+for name, chart in multiple_series.items():
+    print(name)
+
+    states.plot(chart, filename=os.path.join(OUTPUT_DIR, '%s_multiples.png' % name))

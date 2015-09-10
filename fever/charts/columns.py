@@ -33,8 +33,9 @@ class Columns(Chart):
         label_column = table.columns[self._label_column_name]
 
         if not isinstance(label_column, agate.TextColumn) and \
-            not isinstance(label_column, agate.NumberColumn):
-            raise ValueError('Only TextColumn and NumberColumn are supported for column chart labels.')
+            not isinstance(label_column, agate.NumberColumn) and \
+            not isinstance(label_column, agate.DateColumn):
+            raise ValueError('Only TextColumn, NumberColumn and DateColumn are supported for bar chart labels.')
 
         positions = range(len(label_column))
         colors = Qualitative()

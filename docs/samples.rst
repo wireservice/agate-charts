@@ -4,28 +4,46 @@ Sample charts
 
 All of the charts on this page were produced by fever.
 
-Simple
-======
+Single series
+=============
 
 Lines
 -----
 
-.. image:: samples/1_line_chart_simple.png
+.. image:: samples/line_chart_simple.png
 
 Columns
 -------
 
-.. image:: samples/3_column_chart_simple.png
+.. image:: samples/column_chart_simple.png
 
 Bars
 ----
 
-.. image:: samples/5_bar_chart_simple.png
+.. image:: samples/bar_chart_simple.png
 
 Scatter
 -------
 
-.. image:: samples/7_scatter_chart.png
+.. image:: samples/scatter_chart.png
+
+Time series
+===========
+
+Lines
+-----
+
+.. image:: samples/line_chart_dates.png
+
+Columns
+-------
+
+.. image:: samples/column_chart_dates.png
+
+Bars
+----
+
+.. image:: samples/bar_chart_dates.png
 
 Multiple series
 ===============
@@ -33,17 +51,17 @@ Multiple series
 Lines
 -----
 
-.. image:: samples/2_line_chart_complex.png
+.. image:: samples/line_chart_complex.png
 
 Columns
 -------
 
-.. image:: samples/4_column_chart_complex.png
+.. image:: samples/column_chart_complex.png
 
 Bars
 ----
 
-.. image:: samples/6_bar_chart_complex.png
+.. image:: samples/bar_chart_complex.png
 
 Small multiples
 ===============
@@ -51,22 +69,22 @@ Small multiples
 Lines
 -----
 
-.. image:: samples/8_line_chart_simple_multiples.png
+.. image:: samples/line_chart_simple_multiples.png
 
 Columns
 -------
 
-.. image:: samples/10_column_chart_simple_multiples.png
+.. image:: samples/column_chart_simple_multiples.png
 
 Bars
 ----
 
-.. image:: samples/12_bar_chart_simple_multiples.png
+.. image:: samples/bar_chart_simple_multiples.png
 
 Scatter
 -------
 
-.. image:: samples/14_scatter_chart_multiples.png
+.. image:: samples/scatter_chart_multiples.png
 
 Small multiples and multiple series
 ===================================
@@ -74,14 +92,14 @@ Small multiples and multiple series
 Lines
 -----
 
-.. image:: samples/9_line_chart_complex_multiples.png
+.. image:: samples/line_chart_complex_multiples.png
 
 Columns
 -------
 
-.. image:: samples/11_column_chart_complex_multiples.png
+.. image:: samples/column_chart_complex_multiples.png
 
 Bars
 ----
 
-.. image:: samples/13_bar_chart_complex_multiples.png
+.. image:: samples/bar_chart_complex_multiples.png
