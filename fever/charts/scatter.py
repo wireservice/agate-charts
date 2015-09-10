@@ -3,7 +3,7 @@
 import agate
 from matplotlib import pyplot
 
-from fever.base import Chart
+from fever.charts.base import Chart
 
 class Scatter(Chart):
     """
@@ -21,7 +21,7 @@ class Scatter(Chart):
     def _show_legend(self):
         return False
 
-    def _plot(self, table):
+    def _plot(self, table, axes):
         x_column = table.columns[self._x_column_name]
         y_column = table.columns[self._y_column_name]
 
@@ -31,10 +31,10 @@ class Scatter(Chart):
         if not isinstance(y_column, agate.NumberColumn):
             raise ValueError('Only NumberColumn is supported for scatter chart Y axis values.')
 
-        pyplot.scatter(
+        axes.scatter(
             x_column,
             y_column
         )
 
-        pyplot.xlabel(self._x_column_name)
-        pyplot.ylabel(self._y_column_name)
+        axes.set_xlabel(self._x_column_name)
+        axes.set_ylabel(self._y_column_name)

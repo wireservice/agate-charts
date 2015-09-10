@@ -5,7 +5,7 @@ import collections
 import agate
 from matplotlib import pyplot
 
-from fever.base import Chart
+from fever.charts.base import Chart
 from fever.colors import Qualitative
 
 class Bars(Chart):
@@ -29,7 +29,7 @@ class Bars(Chart):
     def _show_legend(self):
         return len(self._value_column_names) > 1
 
-    def _plot(self, table):
+    def _plot(self, table, axes):
         label_column = table.columns[self._label_column_name]
 
         if not isinstance(label_column, agate.TextColumn) and \
@@ -53,7 +53,7 @@ class Bars(Chart):
             for j in positions:
                 series_positions.append(positions[j] + (i + 1) * bar_height)
 
-            plot_bars = pyplot.barh(
+            plot_bars = axes.barh(
                 series_positions,
                 value_column,
                 bar_height,
@@ -63,10 +63,11 @@ class Bars(Chart):
 
             bars.extend(plot_bars)
 
-        pyplot.ylabel(self._label_column_name)
-        pyplot.yticks(series_positions, table.columns[self._label_column_name])
+        axes.set_ylabel(self._label_column_name)
+        axes.set_yticks(series_positions)
+        axes.set_yticklabels(table.columns[self._label_column_name])
 
         if len(self._value_column_names) == 1:
-            pyplot.xlabel(self._value_column_names[0])
+            axes.set_xlabel(self._value_column_names[0])
 
         return (bars, self._value_column_names)

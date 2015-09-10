@@ -18,7 +18,7 @@ class Chart(object):
     """
     Base class for a chart type.
     """
-    def _plot(self):
+    def _plot(self, table, axes):
         """
         Subclasses implement this method to draw a single chart, regardless of
         whether or not it is part of small multiples.
@@ -62,7 +62,7 @@ class Chart(object):
             for i, (key, table) in enumerate(source.items()):
                 axes = pyplot.subplot(rows, columns, i + 1)
 
-                legend = self._plot(table)
+                legend = self._plot(table, axes)
 
                 pyplot.title(key)
 
@@ -88,7 +88,7 @@ class Chart(object):
             pyplot.figure(figsize=size, dpi=dpi)
             axes = pyplot.subplot(1, 1, 1)
 
-            legend = self._plot(source)
+            legend = self._plot(source, axes)
 
             pyplot.grid(b=True, which='major', color='0.85', linestyle='-')
             axes.set_axisbelow(True)

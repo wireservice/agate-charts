@@ -46,8 +46,6 @@ date_totals = dates.aggregate([
     ('noX', agate.Sum(), 'noX')
 ])
 
-date_totals.pretty_print(5)
-
 single_series = {
     'line_chart_simple': fever.Lines('day', 'co2'),
     'column_chart_simple': fever.Columns('day', 'co2'),

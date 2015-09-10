@@ -3,7 +3,7 @@
 import agate
 from matplotlib import pyplot
 
-from fever.base import Chart
+from fever.charts.base import Chart
 from fever.colors import Qualitative
 
 class Lines(Chart):
@@ -28,7 +28,7 @@ class Lines(Chart):
     def _show_legend(self):
         return len(self._y_column_names) > 1
 
-    def _plot(self, table):
+    def _plot(self, table, axes):
         colors = Qualitative()
         lines = []
 
@@ -45,7 +45,7 @@ class Lines(Chart):
             if not isinstance(y_column, agate.NumberColumn):
                 raise ValueError('Only NumberColumn is supported for line chart Y-axis.')
 
-            plot_lines = pyplot.plot(
+            plot_lines = axes.plot(
                 x_column,
                 y_column,
                 linewidth=2,
@@ -55,9 +55,9 @@ class Lines(Chart):
 
             lines.extend(plot_lines)
 
-        pyplot.xlabel(self._x_column_name)
+        axes.set_xlabel(self._x_column_name)
 
         if len(self._y_column_names) == 1:
-            pyplot.ylabel(self._y_column_names[0])
+            axes.set_ylabel(self._y_column_names[0])
 
         return (lines, self._y_column_names)
