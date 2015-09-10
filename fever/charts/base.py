@@ -40,6 +40,9 @@ class Chart(object):
         :param dpi: A number defining the pixels-per-inch to render.
         """
         if isinstance(source, agate.TableSet):
+            if isinstance(source.values()[0], agate.TableSet):
+                raise ValueError('fever does not currently support nested TableSets.')
+
             count = len(source)
 
             if self._show_legend():
