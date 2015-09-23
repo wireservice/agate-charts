@@ -32,7 +32,7 @@ You will now have a file named ``epa-emissions-20150910.csv`` in your ``agate_ch
 
 .. note::
 
-    agate-charts plays nicely with ipython and ipython notebook. If you prefer to go through this tutorial in that environment all the examples will work the same.
+    agate-charts plays nicely with `ipython <http://ipython.org/>`_, `Jupyter notebooks <https://jupyter.org/>`_ and derivative projects like Atom's `hydrogen plugin <https://atom.io/packages/hydrogen>`_. If you prefer to go through this tutorial in any of those environments all the examples will work the same. You may need to add :code:`%matplotlib inline` to the top of your scripts `as you would in an ipython notebook <https://ipython.org/ipython-doc/3/notebook/notebook.html#plotting>`_.
 
 Loading the data
 ================
