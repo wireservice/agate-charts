@@ -51,7 +51,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'fever'
+project = u'agate-charts'
 copyright = u'2015, Christopher Groskopf'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -182,7 +182,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'feverdoc'
+htmlhelp_basename = 'agatecharts'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -196,7 +196,7 @@ htmlhelp_basename = 'feverdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'fever.tex', u'fever Documentation',
+  ('index', 'agatecharts.tex', u'agate-charts Documentation',
    u'Christopher Groskopf', 'manual'),
 ]
 

@@ -1,14 +1,14 @@
-===============
-fever |release|
-===============
+======================
+agate-charts |release|
+======================
 
 About
 =====
 
 .. include:: ../README
 
-Why fever?
-==========
+Why agate-charts?
+=================
 
 * A clean, readable API.
 * Automatically infers good defaults from your data.

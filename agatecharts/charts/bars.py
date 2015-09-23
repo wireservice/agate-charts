@@ -5,18 +5,18 @@ import collections
 import agate
 from matplotlib import pyplot
 
-from fever.charts.base import Chart
-from fever.colors import Qualitative
+from agatecharts.charts.base import Chart
+from agatecharts.colors import Qualitative
 
-class Columns(Chart):
+class Bars(Chart):
     """
-    Plots a column chart.
+    Plots a bar chart.
 
     :param label_column_name: The name of a column in the source to be used for
-        the horizontal axis labels. Must refer to a column containing
+        the vertical axis labels. Must refer to a column containing
         :class:`.Text`, :class:`.Number` or :class:`.Date` data.
     :param value_column_names: One or more column names in the source, each of
-        which will used to define the vertical height of a bar. Must refer to a
+        which will used to define the horizontal width of a bar. Must refer to a
         column containing :class:`.Number` data.
     """
     def __init__(self, label_column_name, value_column_names):
@@ -41,34 +41,34 @@ class Columns(Chart):
         positions = range(len(label_column))
         colors = Qualitative()
         bars = []
-        bar_width = 0.35
+        bar_height = 0.35
 
         for i, value_column_name in enumerate(self._value_column_names):
             value_column = table.columns[value_column_name]
 
             if not isinstance(value_column.data_type, agate.Number):
-                raise ValueError('Only Number data is supported for column chart values.')
+                raise ValueError('Only Number data is supported for bar chart values.')
 
             series_positions = []
 
             for j in positions:
-                series_positions.append(positions[j] + (i + 1) * bar_width)
+                series_positions.append(positions[j] + (i + 1) * bar_height)
 
-            plot_bars = axes.bar(
+            plot_bars = axes.barh(
                 series_positions,
                 value_column,
-                bar_width,
+                bar_height,
                 color=colors.next(),
                 label=value_column_name
             )
 
             bars.extend(plot_bars)
 
-        axes.set_xlabel(self._label_column_name)
-        axes.set_xticks(series_positions)
-        axes.set_xticklabels(table.columns[self._label_column_name])
+        axes.set_ylabel(self._label_column_name)
+        axes.set_yticks(series_positions)
+        axes.set_yticklabels(table.columns[self._label_column_name])
 
         if len(self._value_column_names) == 1:
-            axes.set_ylabel(self._value_column_names[0])
+            axes.set_xlabel(self._value_column_names[0])
 
         return (bars, self._value_column_names)

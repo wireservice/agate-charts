@@ -1,7 +1,8 @@
-fever adds exploratory charting support to agate.
+agate-charts adds exploratory charting support to agate.
 
 Important links:
 
-* Documentation:    http://fever.rtfd.org
-* Repository:       https://github.com/onyxfish/fever
-* Issues:           https://github.com/onyxfish/fever/issues
+* agate:            http://agate.rtfd.org
+* Documentation:    http://agate-charts.rtfd.org
+* Repository:       https://github.com/onyxfish/agate-charts
+* Issues:           https://github.com/onyxfish/agate-charts/issues

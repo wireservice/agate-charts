@@ -3,8 +3,8 @@
 import agate
 from matplotlib import pyplot
 
-from fever.charts.base import Chart
-from fever.colors import Qualitative
+from agatecharts.charts.base import Chart
+from agatecharts.colors import Qualitative
 
 class Lines(Chart):
     """

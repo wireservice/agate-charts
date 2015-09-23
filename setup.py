@@ -10,13 +10,13 @@ install_requires = [
 ]
 
 setup(
-    name='fever',
+    name='agate-charts',
     version='0.1.0',
-    description='fever adds exploratory charting support to agate.',
+    description='agate-charts adds exploratory charting support to agate.',
     long_description=open('README').read(),
     author='Christopher Groskopf',
     author_email='staringmonkey@gmail.com',
-    url='http://fever.readthedocs.org/',
+    url='http://agate-charts.readthedocs.org/',
     license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -38,8 +38,8 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     packages=[
-        'fever',
-        'fever.charts'
+        'agatecharts',
+        'agatecharts.charts'
     ],
     install_requires=install_requires
 )

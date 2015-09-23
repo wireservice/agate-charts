@@ -2,14 +2,36 @@
 
 from matplotlib import pyplot
 
+from agatecharts.charts import *
+
 #: Default rendered chart size in inches
 DEFAULT_SIZE = (8, 8)
 
 #: Default rendered chart dpi
 DEFAULT_DPI = 72
 
-class TableFever(object):
-    def plot(self, chart, filename=None, size=None, dpi=DEFAULT_DPI):
+class TableCharts(object):
+    def bar_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        chart = Bars(label_column_name, value_column_names)
+
+        self._plot(chart, filename, size, dpi)
+
+    def column_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        chart = Columns(label_column_name, value_column_names)
+
+        self._plot(chart, filename, size, dpi)
+
+    def line_chart(self, x_column_name, y_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        chart = Lines(x_column_name, y_column_names)
+
+        self._plot(chart, filename, size, dpi)
+
+    def scatter_chart(self, x_column_name, y_column_name, filename=None, size=None, dpi=DEFAULT_DPI):
+        chart = Scatter(x_column_name, y_column_name)
+
+        self._plot(chart, filename, size, dpi)
+
+    def _plot(self, chart, filename=None, size=None, dpi=DEFAULT_DPI):
         """
         Execute a plot of this :class:`.Table`.
 

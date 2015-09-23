@@ -2,7 +2,11 @@
 -----
 
 * Use agate 0.10.0 extension API.
-* fever.Bars
-* fever.Scatter
-* fever.Columns
-* fever.Lines
+* TableSet.bar_chart
+* TableSet.scatter_chart
+* TableSet.column_chart
+* TableSet.line_chart
+* Table.bar_chart
+* Table.scatter_chart
+* Table.column_chart
+* Table.line_chart

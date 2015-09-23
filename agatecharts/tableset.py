@@ -5,13 +5,34 @@ import math
 import agate
 from matplotlib import pyplot
 
-from fever.table import DEFAULT_DPI
+from agatecharts.charts import *
+from agatecharts.table import DEFAULT_DPI
 
 #: Default small multiple chart size in inches
 DEFAULT_MULTIPLE_SIZE = (4, 4)
 
-class TableSetFever(object):
-    def plot(self, chart, filename=None, size=None, dpi=DEFAULT_DPI):
+class TableSetCharts(object):
+    def bar_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        chart = Bars(label_column_name, value_column_names)
+
+        self._plot(chart, filename, size, dpi)
+
+    def column_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        chart = Columns(label_column_name, value_column_names)
+
+        self._plot(chart, filename, size, dpi)
+
+    def line_chart(self, x_column_name, y_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        chart = Lines(x_column_name, y_column_names)
+
+        self._plot(chart, filename, size, dpi)
+
+    def scatter_chart(self, x_column_name, y_column_name, filename=None, size=None, dpi=DEFAULT_DPI):
+        chart = Scatter(x_column_name, y_column_name)
+
+        self._plot(chart, filename, size, dpi)
+
+    def _plot(self, chart, filename=None, size=None, dpi=DEFAULT_DPI):
         """
         Execute a plot of this :class:`.TableSet`.
 
@@ -23,7 +44,7 @@ class TableSetFever(object):
         :param dpi: A number defining the pixels-per-inch to render.
         """
         if isinstance(self.values()[0], agate.TableSet):
-            raise ValueError('fever does not currently support nested TableSets.')
+            raise ValueError('agate-charts does not currently support nested TableSets.')
 
         count = len(self)
 

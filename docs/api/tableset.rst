@@ -1,7 +1,7 @@
-==============
-fever.tableset
-==============
+====================
+agatecharts.tableset
+====================
 
-.. automodule:: fever.tableset
+.. automodule:: agatecharts.tableset
     :members:
     :undoc-members:

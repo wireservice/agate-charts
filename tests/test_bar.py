@@ -9,7 +9,7 @@ except ImportError:
     import unittest
 
 import agate
-import fever
+import agatecharts
 
 TEST_FILENAME = '.test.png'
 
@@ -53,8 +53,7 @@ class TestBarsChart(unittest.TestCase):
         boys = self.table.where(lambda r: r['gender'] == 'male')
         first_year = boys.where(lambda r: r['month'] < 73)
 
-        bar_chart = fever.Bars('month', 'median')
-        self.table.plot(bar_chart, filename=TEST_FILENAME)
+        self.table.bar_chart('month', 'median', filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
 
@@ -62,15 +61,13 @@ class TestBarsChart(unittest.TestCase):
         boys = self.table.where(lambda r: r['gender'] == 'male')
         first_year = boys.where(lambda r: r['month'] < 73)
 
-        bar_chart = fever.Bars('month', ['median', 'stdev'])
-        self.table.plot(bar_chart, filename=TEST_FILENAME)
+        self.table.bar_chart('month', ['median', 'stdev'], filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))
 
     def test_multiples(self):
         genders = self.table.group_by('gender')
 
-        bar_chart = fever.Bars('month', 'median')
-        genders.plot(bar_chart, filename=TEST_FILENAME)
+        genders.bar_chart('month', 'median', filename=TEST_FILENAME)
 
         self.assertTrue(os.path.exists(TEST_FILENAME))

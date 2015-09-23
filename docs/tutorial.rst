@@ -2,43 +2,37 @@
 Tutorial
 ========
 
-About fever
-===========
+About agate-charts
+==================
 
-fever is an extension for the agate data analysis library that adds support for quickly exploring data using charts. It does not create polished or publication-ready graphics.
+agate-charts is an extension for the  `agate <http://agate.readthedocs.org/>`_ data analysis library that adds support for quickly exploring data using charts. It does not create polished or publication-ready graphics. If you haven't used agate before, please read the `agate tutorial <http://agate.readthedocs.org/>`_ before reading this.
 
-In this tutorial we will use fever to explore a `time-series dataset from the EPA <http://ampd.epa.gov/ampd/>`_ documenting US greenhouse gas emissions for the month of June 2015.
+In this tutorial we will use agate-charts to explore a `time-series dataset from the EPA <http://ampd.epa.gov/ampd/>`_ documenting US greenhouse gas emissions for the month of June 2015.
 
-fever is an addon to the `agate <http://agate.readthedocs.org/>`_ data analysis library and cannot be used without it. fever does not allow you to create publication-ready graphics. If you haven't used agate before, please read the `agate tutorial <http://agate.readthedocs.org/>`_ before reading this.
+Installing agate-charts
+=======================
 
-Installing fever
-================
+.. code-block:: bash
 
-Installing fever is easy::
-
-    pip install fever
-
-.. note::
-
-    You should be installing fever inside a `virtualenv <http://virtualenv.readthedocs.org/en/latest/>`_. If for some crazy reason you aren't using virtualenv you will need to add a ``sudo`` to the previous command.
+    pip install agate-charts
 
 Getting setup
 =============
 
 Let's start by creating a clean workspace::
 
-    mkdir fever_tutorial
-    cd fever_tutorial
+    mkdir agate_charts_tutorial
+    cd agate_charts_tutorial
 
 Now let's download the data::
 
-    curl -L -O https://raw.githubusercontent.com/onyxfish/fever/master/examples/epa-emissions-20150910.csv
+    curl -L -O https://raw.githubusercontent.com/onyxfish/agate-charts/master/examples/epa-emissions-20150910.csv
 
-You will now have a file named ``epa-emissions-20150910.csv`` in your ``fever_tutorial`` directory.
+You will now have a file named ``epa-emissions-20150910.csv`` in your ``agate_charts_tutorial`` directory.
 
 .. note::
 
-    fever plays nicely with ipython and ipython notebook. If you prefer to go through this tutorial in that environment all the examples will work the same.
+    agate-charts plays nicely with ipython and ipython notebook. If you prefer to go through this tutorial in that environment all the examples will work the same.
 
 Loading the data
 ================
@@ -48,7 +42,7 @@ Now let's load the dataset into an :class:`.Table`. We'll use an :class:`.TypeTe
 .. code-block:: python
 
     import agate
-    import fever
+    import agatecharts
 
     tester = agate.TypeTester(force={
         ' Date': agate.Date('%Y-%m-%d')
@@ -61,10 +55,10 @@ Now let's compute a few derived columns in order to make our charting easier. Th
 .. code-block:: python
 
     emissions = emissions.compute([
-        ('day', agate.Formula(agate.Number(), lambda r: r[' Date'].day)),
-        ('so2', agate.Formula(agate.Number(), lambda r: r[' SO2 (tons)'] or 0)),
-        ('nox', agate.Formula(agate.Number(), lambda r: r[' NOx (tons)'] or 0)),
-        ('co2', agate.Formula(agate.Number(), lambda r: r[' CO2 (short tons)'] or 0))
+        (agate.Formula(agate.Number(), lambda r: r[' Date'].day), 'day'),
+        (agate.Formula(agate.Number(), lambda r: r[' SO2 (tons)'] or 0), 'so2'),
+        (agate.Formula(agate.Number(), lambda r: r[' NOx (tons)'] or 0), 'nox'),
+        (agate.Formula(agate.Number(), lambda r: r[' CO2 (short tons)'] or 0), 'co2')
     ])
 
 Of course, for analysis purposes you should always be extremely cautious in assuming that blank fields are equivalent to zero. For the purposes of this tutorial, we will assume this is a valid transformation.
@@ -89,9 +83,9 @@ Now let's render a line chart of the total :code:`co2`:
 
 .. code-block: python
 
-    day_totals.plot(fever.Lines('day', 'co2'))
+    day_totals.line_chart('day', 'co2')
 
-Notice that :code:`plot` is a method on the table. When fever is imported, it automatically adds :meth:`.TableFever.plot` method to :class:`.Table` and the :meth:`.TableSetFever.plot` method to :class:`.TableSet`.
+Notice that :code:`line_chart` is a method on the :class:`.Table`. When agate-charts is imported, it automatically adds :class:`.TableCharts` methods to :class:`.Table` and the :class:`.TableSetCharts` methods to :class:`.TableSet`.
 
 If all goes well, you should see a window popup containing this image:
 
@@ -101,11 +95,11 @@ You can also choose to render the image directly to disk, by passing the :code:`
 
 .. code-block: python
 
-    day_totals.plot(fever.Lines('day', 'co2'), filename='totals.png')
+    day_totals.line_chart('day', 'co2', filename='totals.png')
 
 .. warning::
 
-    fever uses `matplotlib <http://matplotlib.org/>`_ to render charts. Matplotlib is a notoriously complicated and finicky piece of software. fever attempts to abstract away all the messiest bits, but you may still have issues with charts not rendering on your particular platform. If the script hangs, or you don't see any output, try `specifying a rendering backend <http://matplotlib.org/faq/usage_faq.html#what-is-a-backend>`_ *before* importing fever. This shouldn't normally be an issue if you're rendering to files.
+    agate-charts uses `matplotlib <http://matplotlib.org/>`_ to render charts. Matplotlib is a notoriously complicated and finicky piece of software. agate-charts attempts to abstract away all the messiest bits, but you may still have issues with charts not rendering on your particular platform. If the script hangs, or you don't see any output, try `specifying a rendering backend <http://matplotlib.org/faq/usage_faq.html#what-is-a-backend>`_ *before* importing agate-charts. This shouldn't normally be an issue if you're rendering to files.
 
 Rendering multiple series
 =========================
@@ -114,7 +108,7 @@ You may also want to render charts that compare to series of data. For instance,
 
 .. code-block: python
 
-    day_totals.plot(fever.Bars('day', ['so2', 'nox']))
+    day_totals.bar_chart('day', ['so2', 'nox'])
 
 .. image:: samples/bar_chart_complex.png
 

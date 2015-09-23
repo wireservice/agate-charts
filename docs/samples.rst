@@ -2,7 +2,7 @@
 Sample charts
 =============
 
-All of the charts on this page were produced by fever with a single line of code each.
+All of the charts on this page were produced by agate-charts with a single line of code each.
 
 Single series
 =============

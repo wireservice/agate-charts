@@ -5,18 +5,18 @@ Installation
 Users
 =====
 
-If you only want to use fever, install it this way::
+If you only want to use agate-charts, install it this way::
 
-    pip install fever
+    pip install agate-charts
 
 Developers
 ==========
 
-If you are a developer that also wants to hack on fever, install it this way::
+If you are a developer that also wants to hack on agate-charts, install it this way::
 
-    git clone git://github.com/onyxfish/fever.git
-    cd fever
-    mkvirtualenv fever
+    git clone git://github.com/onyxfish/agate-charts.git
+    cd agate-charts
+    mkvirtualenv agate-charts
     pip install -r requirements.txt
     python setup.py develop
     tox
@@ -24,7 +24,7 @@ If you are a developer that also wants to hack on fever, install it this way::
 Supported platforms
 ===================
 
-fever supports the following versions of Python:
+agate-charts supports the following versions of Python:
 
 * Python 2.6 (tests pass, but some dependencies claim not to support it)
 * Python 2.7

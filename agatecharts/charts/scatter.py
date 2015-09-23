@@ -3,7 +3,7 @@
 import agate
 from matplotlib import pyplot
 
-from fever.charts.base import Chart
+from agatecharts.charts.base import Chart
 
 class Scatter(Chart):
     """

@@ -5,7 +5,7 @@ import os
 import shutil
 
 import agate
-import fever
+import agatecharts
 
 OUTPUT_DIR = 'docs/samples'
 
@@ -46,54 +46,34 @@ date_totals = dates.aggregate([
     ('noX', agate.Sum(), 'noX')
 ])
 
-single_series = {
-    'line_chart_simple': fever.Lines('day', 'co2'),
-    'column_chart_simple': fever.Columns('day', 'co2'),
-    'bar_chart_simple': fever.Bars('day', 'co2'),
-    'scatter_chart': fever.Scatter('co2', 'so2')
-}
+print 'Simple charts'
 
-time_series = {
-    'line_chart_dates': fever.Lines(' Date', 'co2'),
-    'column_chart_dates': fever.Columns(' Date', 'co2'),
-    'bar_chart_dates': fever.Bars(' Date', 'co2')
-}
+day_totals.line_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'line_chart_simple.png'))
+day_totals.column_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'column_chart_simple.png'))
+day_totals.bar_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'bar_chart_simple.png'))
+day_totals.scatter_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'scatter_chart.png'))
 
-multiple_series = {
-    'line_chart_complex': fever.Lines('day', ['so2', 'noX']),
-    'column_chart_complex': fever.Columns('day', ['so2', 'noX']),
-    'bar_chart_complex': fever.Bars('day', ['so2', 'noX']),
-}
+print 'Time series'
 
-with_dates = {
-    'line_chart_dates': fever.Lines(' Date', 'so2'),
-    'column_chart_dates': fever.Columns(' Date', 'so2'),
-    'line_chart_dates': fever.Lines(' Date', 'so2'),
-}
+date_totals.line_chart(' Date', 'co2', filename=os.path.join(OUTPUT_DIR, 'line_chart_dates.png'))
+date_totals.column_chart(' Date', 'co2', filename=os.path.join(OUTPUT_DIR, 'column_chart_dates.png'))
+date_totals.bar_chart(' Date', 'co2', filename=os.path.join(OUTPUT_DIR, 'bar_chart_dates.png'))
 
-# Not small multiples
-for name, chart in single_series.items():
-    print(name)
+print 'Multiple series'
 
-    day_totals.plot(chart, filename=os.path.join(OUTPUT_DIR, '%s.png' % name))
+day_totals.line_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'line_chart_complex.png'))
+day_totals.column_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'column_chart_complex.png'))
+day_totals.bar_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'bar_chart_complex.png'))
 
-for name, chart in time_series.items():
-    print(name)
+print 'Small multiples'
 
-    date_totals.plot(chart, filename=os.path.join(OUTPUT_DIR, '%s.png' % name))
+states.line_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'line_chart_simple_multiples.png'))
+states.column_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'column_chart_simple_multiples.png'))
+states.bar_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'bar_chart_simple_multiples.png'))
+states.scatter_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'scatter_chart_multiples.png'))
 
-for name, chart in multiple_series.items():
-    print(name)
+print 'Small multiples with multiple series'
 
-    day_totals.plot(chart, filename=os.path.join(OUTPUT_DIR, '%s.png' % name))
-
-# Small multiples
-for name, chart in single_series.items():
-    print(name)
-
-    states.plot(chart, filename=os.path.join(OUTPUT_DIR, '%s_multiples.png' % name))
-
-for name, chart in multiple_series.items():
-    print(name)
-
-    states.plot(chart, filename=os.path.join(OUTPUT_DIR, '%s_multiples.png' % name))
+states.line_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'line_chart_complex_multiples.png'))
+states.column_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'column_chart_complex_multiples.png'))
+states.bar_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'bar_chart_complex_multiples.png'))
