@@ -37,7 +37,7 @@ class Columns(Chart):
         positions = range(len(label_column))
         colors = Qualitative()
         legend_bars = []
-        bar_width = 0.35
+        bar_width = 0.65 / len(self._value_column_names)
 
         for i, value_column_name in enumerate(self._value_column_names):
             value_column = table.columns[value_column_name]

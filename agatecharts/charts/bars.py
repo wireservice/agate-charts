@@ -38,7 +38,7 @@ class Bars(Chart):
         positions = range(len(label_column))
         colors = Qualitative()
         legend_bars = []
-        bar_height = 0.35
+        bar_height = 0.65 / len(self._value_column_names)
 
         # Display first value at the top of the chart.
         positions.reverse()

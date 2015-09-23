@@ -11,7 +11,7 @@ DEFAULT_SIZE = (8, 8)
 DEFAULT_DPI = 72
 
 class TableCharts(object):
-    def bar_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+    def bar_chart(self, label_column_name, value_column_names, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
         """
         Plots a bar chart.
 
@@ -28,7 +28,7 @@ class TableCharts(object):
 
         self._plot(chart, filename, size, dpi)
 
-    def column_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+    def column_chart(self, label_column_name, value_column_names, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
         """
         Plots a column chart.
 
@@ -45,7 +45,7 @@ class TableCharts(object):
 
         self._plot(chart, filename, size, dpi)
 
-    def line_chart(self, x_column_name, y_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+    def line_chart(self, x_column_name, y_column_names, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
         """
         Plots a line chart.
 
@@ -63,7 +63,7 @@ class TableCharts(object):
 
         self._plot(chart, filename, size, dpi)
 
-    def scatter_chart(self, x_column_name, y_column_name, filename=None, size=None, dpi=DEFAULT_DPI):
+    def scatter_chart(self, x_column_name, y_column_name, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
         """
         Plots a scatter plot.
 
@@ -78,7 +78,7 @@ class TableCharts(object):
 
         self._plot(chart, filename, size, dpi)
 
-    def _plot(self, chart, filename=None, size=None, dpi=DEFAULT_DPI):
+    def _plot(self, chart, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
         """
         Execute a plot of this :class:`.Table`.
 
@@ -91,9 +91,6 @@ class TableCharts(object):
             canvas to render to.
         :param dpi: A number defining the pixels-per-inch to render.
         """
-        if not size:
-            size = DEFAULT_SIZE
-
         if chart.show_legend():
             size = (
                 size[0] * 1.2,
