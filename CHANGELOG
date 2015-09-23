@@ -1,3 +1,9 @@
+0.2.0
+-----
+
+* Switch to using agate's new monkey patching extension support.
+* Upgrade to agate 0.10.0.
+
 0.1.0
 -----
 

@@ -11,11 +11,12 @@ class Lines(Chart):
     Plots a line chart.
 
     :param x_column_name: The name of a column in the source to be used for
-        the horizontal axis. May refer to a :class:`agate.NumberColumn`,
-        :class:`agate.DateColumn` or :class:`agate.DateTimeColumn`.
+        the horizontal axis. May refer to a column containing
+        :class:`.Number`, :class:`.Date` or :class:`.DateTime`
+        data.
     :param y_column_names: A sequence of column names in the source, each of
-        which will be used for the vertical axis. Must refer to a
-        :class:`agate.NumberColumn`.
+        which will be used for the vertical axis. Must refer to a column with
+        :class:`.Number` data.
     """
     def __init__(self, x_column_name, y_column_names):
         self._x_column_name = x_column_name
@@ -34,16 +35,16 @@ class Lines(Chart):
 
         x_column = table.columns[self._x_column_name]
 
-        if not isinstance(x_column, agate.NumberColumn) and \
-            not isinstance(x_column, agate.DateColumn) and \
-            not isinstance(x_column, agate.DateTimeColumn):
-            raise ValueError('Only NumberColumn, DateColumn and DateTimeColumn are supported for line chart X-axis.')
+        if not isinstance(x_column.data_type, agate.Number) and \
+            not isinstance(x_column.data_type, agate.Date) and \
+            not isinstance(x_column.data_type, agate.DateTime):
+            raise ValueError('Only Number, Date and DateTime data are supported for line chart X-axis.')
 
         for i, y_column_name in enumerate(self._y_column_names):
             y_column = table.columns[y_column_name]
 
-            if not isinstance(y_column, agate.NumberColumn):
-                raise ValueError('Only NumberColumn is supported for line chart Y-axis.')
+            if not isinstance(y_column.data_type, agate.Number):
+                raise ValueError('Only Number data is supported for line chart Y-axis.')
 
             plot_lines = axes.plot(
                 x_column,
