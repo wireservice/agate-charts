@@ -6,14 +6,6 @@ from matplotlib import pyplot
 from agatecharts.charts.base import Chart
 
 class Scatter(Chart):
-    """
-    Plots a scatter plot.
-
-    :param x_column_name: Column containing X values for the points to plot.
-        Must refer to a column containg :class:`.Number` data.
-    :param y_column_name: Column containing Y values for the points to plot.
-        Must refer to a column containg :class:`.Number` data.
-    """
     def __init__(self, x_column_name, y_column_name):
         self._x_column_name = x_column_name
         self._y_column_name = y_column_name

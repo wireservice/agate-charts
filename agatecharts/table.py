@@ -12,21 +12,68 @@ DEFAULT_DPI = 72
 
 class TableCharts(object):
     def bar_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        """
+        Plots a bar chart.
+
+        See :meth:`TableCharts._plot` for an explanation of keyword arguments.
+
+        :param label_column_name: The name of a column in the source to be used for
+            the vertical axis labels. Must refer to a column containing
+            :class:`.Text`, :class:`.Number` or :class:`.Date` data.
+        :param value_column_names: One or more column names in the source, each of
+            which will used to define the horizontal width of a bar. Must refer to a
+            column containing :class:`.Number` data.
+        """
         chart = Bars(label_column_name, value_column_names)
 
         self._plot(chart, filename, size, dpi)
 
     def column_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        """
+        Plots a column chart.
+
+        See :meth:`TableCharts._plot` for an explanation of keyword arguments.
+
+        :param label_column_name: The name of a column in the source to be used for
+            the horizontal axis labels. Must refer to a column containing
+            :class:`.Text`, :class:`.Number` or :class:`.Date` data.
+        :param value_column_names: One or more column names in the source, each of
+            which will used to define the vertical height of a bar. Must refer to a
+            column containing :class:`.Number` data.
+        """
         chart = Columns(label_column_name, value_column_names)
 
         self._plot(chart, filename, size, dpi)
 
     def line_chart(self, x_column_name, y_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        """
+        Plots a line chart.
+
+        See :meth:`TableCharts._plot` for an explanation of keyword arguments.
+
+        :param x_column_name: The name of a column in the source to be used for
+            the horizontal axis. May refer to a column containing
+            :class:`.Number`, :class:`.Date` or :class:`.DateTime`
+            data.
+        :param y_column_names: A sequence of column names in the source, each of
+            which will be used for the vertical axis. Must refer to a column with
+            :class:`.Number` data.
+        """
         chart = Lines(x_column_name, y_column_names)
 
         self._plot(chart, filename, size, dpi)
 
     def scatter_chart(self, x_column_name, y_column_name, filename=None, size=None, dpi=DEFAULT_DPI):
+        """
+        Plots a scatter plot.
+
+        See :meth:`TableCharts._plot` for an explanation of keyword arguments.
+
+        :param x_column_name: Column containing X values for the points to plot.
+            Must refer to a column containg :class:`.Number` data.
+        :param y_column_name: Column containing Y values for the points to plot.
+            Must refer to a column containg :class:`.Number` data.
+        """
         chart = Scatter(x_column_name, y_column_name)
 
         self._plot(chart, filename, size, dpi)
@@ -35,7 +82,9 @@ class TableCharts(object):
         """
         Execute a plot of this :class:`.Table`.
 
-        :param chart: An instance of :class:`.Chart` to render.
+        This method should not be called directly by the user.
+
+        :param chart: An chart class to render.
         :param filename: A filename to render to. If not specified will render
             to screen in "interactive mode".
         :param size: A (width, height) tuple in inches defining the size of the

@@ -9,16 +9,6 @@ from agatecharts.charts.base import Chart
 from agatecharts.colors import Qualitative
 
 class Columns(Chart):
-    """
-    Plots a column chart.
-
-    :param label_column_name: The name of a column in the source to be used for
-        the horizontal axis labels. Must refer to a column containing
-        :class:`.Text`, :class:`.Number` or :class:`.Date` data.
-    :param value_column_names: One or more column names in the source, each of
-        which will used to define the vertical height of a bar. Must refer to a
-        column containing :class:`.Number` data.
-    """
     def __init__(self, label_column_name, value_column_names):
         self._label_column_name = label_column_name
 

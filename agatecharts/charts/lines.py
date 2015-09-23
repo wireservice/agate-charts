@@ -7,17 +7,6 @@ from agatecharts.charts.base import Chart
 from agatecharts.colors import Qualitative
 
 class Lines(Chart):
-    """
-    Plots a line chart.
-
-    :param x_column_name: The name of a column in the source to be used for
-        the horizontal axis. May refer to a column containing
-        :class:`.Number`, :class:`.Date` or :class:`.DateTime`
-        data.
-    :param y_column_names: A sequence of column names in the source, each of
-        which will be used for the vertical axis. Must refer to a column with
-        :class:`.Number` data.
-    """
     def __init__(self, x_column_name, y_column_names):
         self._x_column_name = x_column_name
 

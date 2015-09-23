@@ -13,35 +13,40 @@ DEFAULT_MULTIPLE_SIZE = (4, 4)
 
 class TableSetCharts(object):
     def bar_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        """
+        See :meth:`.TableCharts.bar_chart`.
+        """
         chart = Bars(label_column_name, value_column_names)
 
         self._plot(chart, filename, size, dpi)
 
     def column_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        """
+        See :meth:`.TableCharts.column_chart`.
+        """
         chart = Columns(label_column_name, value_column_names)
 
         self._plot(chart, filename, size, dpi)
 
     def line_chart(self, x_column_name, y_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
+        """
+        See :meth:`.TableCharts.line_chart`.
+        """
         chart = Lines(x_column_name, y_column_names)
 
         self._plot(chart, filename, size, dpi)
 
     def scatter_chart(self, x_column_name, y_column_name, filename=None, size=None, dpi=DEFAULT_DPI):
+        """
+        See :meth:`.TableCharts.scatter_chart`.
+        """
         chart = Scatter(x_column_name, y_column_name)
 
         self._plot(chart, filename, size, dpi)
 
     def _plot(self, chart, filename=None, size=None, dpi=DEFAULT_DPI):
         """
-        Execute a plot of this :class:`.TableSet`.
-
-        :param chart: An instance of :class:`.Chart` to render.
-        :param filename: A filename to render to. If not specified will render
-            to screen in "interactive mode".
-        :param size: A (width, height) tuple in inches defining the size of the
-            canvas to render to.
-        :param dpi: A number defining the pixels-per-inch to render.
+        See :meth:`.TableCharts._plot`.
         """
         if isinstance(self.values()[0], agate.TableSet):
             raise ValueError('agate-charts does not currently support nested TableSets.')
