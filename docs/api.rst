@@ -6,3 +6,5 @@ API
     :maxdepth: 2
 
     api/charts
+    api/table
+    api/tableset

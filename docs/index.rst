@@ -14,6 +14,9 @@ Why fever?
 * Automatically infers good defaults from your data.
 * Far simpler than using matplotlib directly.
 * Code, chart, code, chart. No context switching.
+* It makes this with one line of code:
+
+.. image:: samples/line_chart_complex_multiples.png
 
 Table of contents
 =================

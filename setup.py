@@ -12,7 +12,7 @@ install_requires = [
 setup(
     name='fever',
     version='0.1.0',
-    description='fever is an Python exploratory charting library built on the agate data analysis library.',
+    description='fever adds exploratory charting support to agate.',
     long_description=open('README').read(),
     author='Christopher Groskopf',
     author_email='staringmonkey@gmail.com',

@@ -91,7 +91,7 @@ Now let's render a line chart of the total :code:`co2`:
 
     day_totals.plot(fever.Lines('day', 'co2'))
 
-Notice that :code:`plot` is a method on the table. When fever is imported, it automatically adds plot methods to both the :class:`.Table` and :class:`.TableSet` classes.
+Notice that :code:`plot` is a method on the table. When fever is imported, it automatically adds :meth:`.TableFever.plot` method to :class:`.Table` and the :meth:`.TableSetFever.plot` method to :class:`.TableSet`.
 
 If all goes well, you should see a window popup containing this image:
 
