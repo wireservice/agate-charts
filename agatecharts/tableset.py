@@ -67,6 +67,21 @@ class TableSetCharts(object):
 
         pyplot.figure(figsize=size, dpi=dpi)
 
+        # Compute max domain of all tables so they can be placed on the same axes
+        x_min = 0
+        x_max = 0
+        y_min = 0
+        y_max = 0
+
+        for table in self.values():
+            table_x_min, table_x_max = chart.get_x_domain(table)
+            table_y_min, table_y_max = chart.get_y_domain(table)
+
+            x_min = min(x_min, table_x_min)
+            x_max = max(x_max, table_x_max)
+            y_min = min(y_min, table_y_min)
+            y_max = max(y_max, table_y_max)
+
         i = 0
 
         for i, (key, table) in enumerate(self.items()):
@@ -78,6 +93,13 @@ class TableSetCharts(object):
 
             pyplot.grid(b=True, which='major', color='0.85', linestyle='-')
             axes.set_axisbelow(True)
+
+            # matplotlib won't accept Decimal for limit values
+            if x_min is not None and x_max is not None:
+                axes.set_xlim(float(x_min), float(x_max))
+
+            if y_min is not None and y_max is not None:
+                axes.set_ylim(float(y_min), float(y_max))
 
         if chart.show_legend():
             axes = pyplot.subplot(grid_rows, grid_columns, i + 2)

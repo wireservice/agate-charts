@@ -17,6 +17,15 @@ class Bars(Chart):
     def show_legend(self):
         return len(self._value_column_names) > 1
 
+    def get_x_domain(self, table):
+        x_min = min([min(table.columns[name].get_data_without_nulls()) for name in self._value_column_names])
+        x_max = max([max(table.columns[name].get_data_without_nulls()) for name in self._value_column_names])
+
+        return x_min, x_max
+
+    def get_y_domain(self, table):
+        return (None, None)
+
     def plot(self, table, axes):
         label_column = table.columns[self._label_column_name]
 

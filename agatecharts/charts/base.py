@@ -11,6 +11,18 @@ class Chart(object):
         """
         raise NotImplementedError
 
+    def get_x_domain(self, table):
+        """
+        Compute the x domain for this chart type for a given table.
+        """
+        raise NotImplementedError
+
+    def get_y_domain(self, table):
+        """
+        Compute the y domain for this chart type for a given table.
+        """
+        raise NotImplementedError
+
     def plot(self, table, axes):
         """
         Subclasses implement this method to draw a single chart, regardless of

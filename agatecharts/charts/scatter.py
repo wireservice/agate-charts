@@ -12,6 +12,18 @@ class Scatter(Chart):
     def show_legend(self):
         return False
 
+    def get_x_domain(self, table):
+        x_min = min(table.columns[self._x_column_name])
+        x_max = max(table.columns[self._x_column_name])
+
+        return (x_min, x_max)
+
+    def get_y_domain(self, table):
+        y_min = min(table.columns[self._y_column_name])
+        y_may = max(table.columns[self._y_column_name])
+
+        return (y_min, y_may)
+
     def plot(self, table, axes):
         x_column = table.columns[self._x_column_name]
         y_column = table.columns[self._y_column_name]

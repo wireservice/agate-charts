@@ -17,6 +17,18 @@ class Lines(Chart):
     def show_legend(self):
         return len(self._y_column_names) > 1
 
+    def get_x_domain(self, table):
+        x_min = min(table.columns[self._x_column_name])
+        x_max = max(table.columns[self._x_column_name])
+
+        return (x_min, x_max)
+
+    def get_y_domain(self, table):
+        y_min = min([min(table.columns[name]) for name in self._y_column_names])
+        y_max = max([max(table.columns[name]) for name in self._y_column_names])
+
+        return (y_min, y_max)
+
     def plot(self, table, axes):
         colors = Qualitative()
         legend_lines = []
