@@ -37,7 +37,8 @@ class Columns(Chart):
         positions = range(len(label_column))
         colors = Qualitative()
         legend_bars = []
-        bar_width = 0.65 / len(self._value_column_names)
+        bar_area = 0.65
+        bar_width = bar_area / len(self._value_column_names)
 
         for i, value_column_name in enumerate(self._value_column_names):
             value_column = table.columns[value_column_name]
@@ -48,7 +49,7 @@ class Columns(Chart):
             series_positions = []
 
             for j in positions:
-                series_positions.append(positions[j] + (i + 1) * bar_width)
+                series_positions.append(positions[j] + (i * bar_width))
 
             plot_bars = axes.bar(
                 series_positions,
@@ -61,7 +62,7 @@ class Columns(Chart):
             legend_bars.append(plot_bars[0])
 
         axes.set_xlabel(self._label_column_name)
-        axes.set_xticks(series_positions)
+        axes.set_xticks([p + (bar_area / 2) for p in positions])
         axes.set_xticklabels(table.columns[self._label_column_name])
 
         if len(self._value_column_names) == 1:

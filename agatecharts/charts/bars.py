@@ -38,7 +38,8 @@ class Bars(Chart):
         positions = range(len(label_column))
         colors = Qualitative()
         legend_bars = []
-        bar_height = 0.65 / len(self._value_column_names)
+        bar_area = 0.65
+        bar_height = bar_area / len(self._value_column_names)
 
         # Display first value at the top of the chart.
         positions.reverse()
@@ -65,7 +66,7 @@ class Bars(Chart):
             legend_bars.append(plot_bars[0])
 
         axes.set_ylabel(self._label_column_name)
-        axes.set_yticks(series_positions)
+        axes.set_yticks([p + (series_count - i) * bar_height + (bar_area / 2) for p in positions])
         axes.set_yticklabels(table.columns[self._label_column_name])
 
         if len(self._value_column_names) == 1:

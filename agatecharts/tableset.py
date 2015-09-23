@@ -68,10 +68,10 @@ class TableSetCharts(object):
         pyplot.figure(figsize=size, dpi=dpi)
 
         # Compute max domain of all tables so they can be placed on the same axes
-        x_min = 0
-        x_max = 0
-        y_min = 0
-        y_max = 0
+        x_min = float('inf')
+        x_max = float('-inf')
+        y_min = float('inf')
+        y_max = float('-inf')
 
         for table in self.values():
             table_x_min, table_x_max = chart.get_x_domain(table)

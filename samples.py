@@ -27,6 +27,12 @@ emissions = emissions.compute([
 ])
 
 states = emissions.group_by('State')
+state_totals = states.aggregate([
+    ('so2', agate.Sum(), 'so2'),
+    ('co2', agate.Sum(), 'co2'),
+    ('noX', agate.Sum(), 'noX')
+])
+
 new_york = states['NY']
 
 # NB: key_type shouldn't be necessary--agate bug #234
@@ -47,9 +53,9 @@ date_totals = dates.aggregate([
 print 'Simple charts'
 
 day_totals.line_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'line_chart_simple.png'))
-day_totals.column_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'column_chart_simple.png'))
-day_totals.bar_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'bar_chart_simple.png'))
-day_totals.scatter_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'scatter_chart.png'))
+state_totals.column_chart('State', 'co2', filename=os.path.join(OUTPUT_DIR, 'column_chart_simple.png'))
+state_totals.bar_chart('State', 'co2', filename=os.path.join(OUTPUT_DIR, 'bar_chart_simple.png'))
+day_totals.scatter_chart('so2', 'noX', filename=os.path.join(OUTPUT_DIR, 'scatter_chart.png'))
 
 print 'Time series'
 
@@ -60,15 +66,15 @@ date_totals.bar_chart(' Date', 'co2', filename=os.path.join(OUTPUT_DIR, 'bar_cha
 print 'Multiple series'
 
 day_totals.line_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'line_chart_complex.png'))
-day_totals.column_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'column_chart_complex.png'))
-day_totals.bar_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'bar_chart_complex.png'))
+state_totals.column_chart('State', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'column_chart_complex.png'))
+state_totals.bar_chart('State', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'bar_chart_complex.png'))
 
 print 'Small multiples'
 
 states.line_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'line_chart_simple_multiples.png'))
 states.column_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'column_chart_simple_multiples.png'))
 states.bar_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'bar_chart_simple_multiples.png'))
-states.scatter_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'scatter_chart_multiples.png'))
+states.scatter_chart('so2', 'noX', filename=os.path.join(OUTPUT_DIR, 'scatter_chart_multiples.png'))
 
 print 'Small multiples with multiple series'
 
