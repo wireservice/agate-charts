@@ -5,7 +5,7 @@ Tutorial
 About fever
 ===========
 
-fever is a library for quickly exploring data using charts. It does not create polished or publication-ready graphics.
+fever is an extension for the agate data analysis library that adds support for quickly exploring data using charts. It does not create polished or publication-ready graphics.
 
 In this tutorial we will use fever to explore a `time-series dataset from the EPA <http://ampd.epa.gov/ampd/>`_ documenting US greenhouse gas emissions for the month of June 2015.
 
@@ -43,11 +43,12 @@ You will now have a file named ``epa-emissions-20150910.csv`` in your ``fever_tu
 Loading the data
 ================
 
-Now let's load the dataset into an :class:`agate.Table`. We'll use an :class:`agate.TypeTester` so that we don't have to specify every column, but we'll force the :code:` Date` column to be a date since it is in a known format.
+Now let's load the dataset into an :class:`.Table`. We'll use an :class:`.TypeTester` so that we don't have to specify every column, but we'll force the :code:` Date` column to be a date since it is in a known format.
 
 .. code-block:: python
 
     import agate
+    import fever
 
     tester = agate.TypeTester(force={
         ' Date': agate.Date('%Y-%m-%d')
@@ -89,6 +90,8 @@ Now let's render a line chart of the total :code:`co2`:
 .. code-block: python
 
     day_totals.plot(fever.Lines('day', 'co2'))
+
+Notice that :code:`plot` is a method on the table. When fever is imported, it automatically adds plot methods to both the :class:`.Table` and :class:`.TableSet` classes.
 
 If all goes well, you should see a window popup containing this image:
 

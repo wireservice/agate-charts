@@ -13,7 +13,7 @@ Why fever?
 * A clean, readable API.
 * Automatically infers good defaults from your data.
 * Far simpler than using matplotlib directly.
-* Chart, code, chart, code. No context switching.
+* Code, chart, code, chart. No context switching.
 
 Table of contents
 =================
