@@ -56,13 +56,13 @@ class TableSetCharts(object):
         if chart.show_legend():
             count += 1
 
-        rows = int(math.sqrt(count))
-        columns = math.ceil(float(count) / rows)
+        grid_rows = int(math.sqrt(count))
+        grid_columns = math.ceil(float(count) / grid_rows)
 
         if not size:
             size = (
-                DEFAULT_MULTIPLE_SIZE[0] * columns,
-                DEFAULT_MULTIPLE_SIZE[1] * rows
+                DEFAULT_MULTIPLE_SIZE[0] * grid_columns,
+                DEFAULT_MULTIPLE_SIZE[1] * grid_rows
             )
 
         pyplot.figure(figsize=size, dpi=dpi)
@@ -70,7 +70,7 @@ class TableSetCharts(object):
         i = 0
 
         for i, (key, table) in enumerate(self.items()):
-            axes = pyplot.subplot(rows, columns, i + 1)
+            axes = pyplot.subplot(grid_rows, grid_columns, i + 1)
 
             legend = chart.plot(table, axes)
 
@@ -80,7 +80,7 @@ class TableSetCharts(object):
             axes.set_axisbelow(True)
 
         if chart.show_legend():
-            axes = pyplot.subplot(rows, columns, i + 2)
+            axes = pyplot.subplot(grid_rows, grid_columns, i + 2)
             pyplot.axis('off')
             axes.legend(*legend, loc='center left', bbox_to_anchor=(0, 0.5))
 
