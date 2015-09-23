@@ -25,10 +25,14 @@ class Bars(Chart):
             not isinstance(label_column.data_type, agate.Date):
             raise ValueError('Only Text, Number and Date data are supported for bar chart labels.')
 
+        series_count = len(self._value_column_names)
         positions = range(len(label_column))
         colors = Qualitative()
         legend_bars = []
         bar_height = 0.35
+
+        # Display first value at the top of the chart.
+        positions.reverse()
 
         for i, value_column_name in enumerate(self._value_column_names):
             value_column = table.columns[value_column_name]
@@ -39,7 +43,7 @@ class Bars(Chart):
             series_positions = []
 
             for j in positions:
-                series_positions.append(positions[j] + (i + 1) * bar_height)
+                series_positions.append(j + (series_count - i) * bar_height)
 
             plot_bars = axes.barh(
                 series_positions,
