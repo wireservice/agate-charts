@@ -19,7 +19,7 @@ class Lines(Chart):
 
     def plot(self, table, axes):
         colors = Qualitative()
-        lines = []
+        legend_lines = []
 
         x_column = table.columns[self._x_column_name]
 
@@ -42,11 +42,11 @@ class Lines(Chart):
                 label=y_column_name
             )
 
-            lines.extend(plot_lines)
+            legend_lines.append(plot_lines[0])
 
         axes.set_xlabel(self._x_column_name)
 
         if len(self._y_column_names) == 1:
             axes.set_ylabel(self._y_column_names[0])
 
-        return (lines, self._y_column_names)
+        return (legend_lines, self._y_column_names)

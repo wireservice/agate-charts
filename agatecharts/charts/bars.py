@@ -27,7 +27,7 @@ class Bars(Chart):
 
         positions = range(len(label_column))
         colors = Qualitative()
-        bars = []
+        legend_bars = []
         bar_height = 0.35
 
         for i, value_column_name in enumerate(self._value_column_names):
@@ -49,7 +49,7 @@ class Bars(Chart):
                 label=value_column_name
             )
 
-            bars.extend(plot_bars)
+            legend_bars.append(plot_bars[0])
 
         axes.set_ylabel(self._label_column_name)
         axes.set_yticks(series_positions)
@@ -58,4 +58,4 @@ class Bars(Chart):
         if len(self._value_column_names) == 1:
             axes.set_xlabel(self._value_column_names[0])
 
-        return (bars, self._value_column_names)
+        return (legend_bars, self._value_column_names)

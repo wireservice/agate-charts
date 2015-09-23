@@ -5,7 +5,7 @@ Tutorial
 About agate-charts
 ==================
 
-agate-charts is an extension for the  `agate <http://agate.readthedocs.org/>`_ data analysis library that adds support for quickly exploring data using charts. It does not create polished or publication-ready graphics. If you haven't used agate before, please read the `agate tutorial <http://agate.readthedocs.org/>`_ before reading this.
+agate-charts is an extension for the `agate <http://agate.readthedocs.org/>`_ data analysis library that adds support for quickly exploring data using charts. It does not create polished or publication-ready graphics. If you haven't used agate before, please read the `agate tutorial <http://agate.readthedocs.org/>`_ before reading this.
 
 In this tutorial we will use agate-charts to explore a `time-series dataset from the EPA <http://ampd.epa.gov/ampd/>`_ documenting US greenhouse gas emissions for the month of June 2015.
 
@@ -99,7 +99,7 @@ You can also choose to render the image directly to disk, by passing the :code:`
 
 .. warning::
 
-    agate-charts uses `matplotlib <http://matplotlib.org/>`_ to render charts. Matplotlib is a notoriously complicated and finicky piece of software. agate-charts attempts to abstract away all the messiest bits, but you may still have issues with charts not rendering on your particular platform. If the script hangs, or you don't see any output, try `specifying a rendering backend <http://matplotlib.org/faq/usage_faq.html#what-is-a-backend>`_ *before* importing agate-charts. This shouldn't normally be an issue if you're rendering to files.
+    agate-charts uses `matplotlib <http://matplotlib.org/>`_ to render charts. Matplotlib is a notoriously complicated and finicky piece of software. agate-charts attempts to abstract away all the messiest bits, but you may still have issues with charts not rendering on your particular platform. If the script hangs, or you don't see any output, try `specifying a rendering backend <http://matplotlib.org/faq/usage_faq.html#what-is-a-backend>`_ *before* importing agate-charts. This shouldn't be an issue if you're rendering to files.
 
 Rendering multiple series
 =========================
@@ -115,16 +115,16 @@ You may also want to render charts that compare to series of data. For instance,
 Small multiples
 ===============
 
-TKTK
+TODO
 
 Saving charts
 =============
 
-TKTK
+TODO
 
 Where to go next
 ================
 
-TKTK
+TODO
 
 Link to proof

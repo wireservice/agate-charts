@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
-import csv
 import os
-import shutil
 
 import agate
 import agatecharts
