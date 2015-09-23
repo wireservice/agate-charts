@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-from agatecharts.charts import *
+import agate
+
+from agatecharts.charts import Bars, Columns, Lines, Scatter
 from agatecharts.table import TableCharts
 from agatecharts.tableset import TableSetCharts
 

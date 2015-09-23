@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import agate
-from matplotlib import pyplot
 
 from agatecharts.charts.base import Chart
 
@@ -10,10 +9,10 @@ class Scatter(Chart):
         self._x_column_name = x_column_name
         self._y_column_name = y_column_name
 
-    def _show_legend(self):
+    def show_legend(self):
         return False
 
-    def _plot(self, table, axes):
+    def plot(self, table, axes):
         x_column = table.columns[self._x_column_name]
         y_column = table.columns[self._y_column_name]
 

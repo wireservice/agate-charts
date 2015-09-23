@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 
-import collections
-
 import agate
-from matplotlib import pyplot
 
 from agatecharts.charts.base import Chart
 from agatecharts.colors import Qualitative
@@ -17,10 +14,10 @@ class Bars(Chart):
 
         self._value_column_names = value_column_names
 
-    def _show_legend(self):
+    def show_legend(self):
         return len(self._value_column_names) > 1
 
-    def _plot(self, table, axes):
+    def plot(self, table, axes):
         label_column = table.columns[self._label_column_name]
 
         if not isinstance(label_column.data_type, agate.Text) and \

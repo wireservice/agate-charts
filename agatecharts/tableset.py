@@ -5,7 +5,7 @@ import math
 import agate
 from matplotlib import pyplot
 
-from agatecharts.charts import *
+from agatecharts.charts import Bars, Columns, Lines, Scatter
 from agatecharts.table import DEFAULT_DPI
 
 #: Default small multiple chart size in inches
@@ -53,7 +53,7 @@ class TableSetCharts(object):
 
         count = len(self)
 
-        if chart._show_legend():
+        if chart.show_legend():
             count += 1
 
         rows = int(math.sqrt(count))
@@ -67,17 +67,19 @@ class TableSetCharts(object):
 
         pyplot.figure(figsize=size, dpi=dpi)
 
+        i = 0
+
         for i, (key, table) in enumerate(self.items()):
             axes = pyplot.subplot(rows, columns, i + 1)
 
-            legend = chart._plot(table, axes)
+            legend = chart.plot(table, axes)
 
             pyplot.title(key)
 
             pyplot.grid(b=True, which='major', color='0.85', linestyle='-')
             axes.set_axisbelow(True)
 
-        if chart._show_legend():
+        if chart.show_legend():
             axes = pyplot.subplot(rows, columns, i + 2)
             pyplot.axis('off')
             axes.legend(*legend, loc='center left', bbox_to_anchor=(0, 0.5))

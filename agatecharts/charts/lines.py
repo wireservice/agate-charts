@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import agate
-from matplotlib import pyplot
 
 from agatecharts.charts.base import Chart
 from agatecharts.colors import Qualitative
@@ -15,10 +14,10 @@ class Lines(Chart):
 
         self._y_column_names = y_column_names
 
-    def _show_legend(self):
+    def show_legend(self):
         return len(self._y_column_names) > 1
 
-    def _plot(self, table, axes):
+    def plot(self, table, axes):
         colors = Qualitative()
         lines = []
 
@@ -29,7 +28,7 @@ class Lines(Chart):
             not isinstance(x_column.data_type, agate.DateTime):
             raise ValueError('Only Number, Date and DateTime data are supported for line chart X-axis.')
 
-        for i, y_column_name in enumerate(self._y_column_names):
+        for y_column_name in self._y_column_names:
             y_column = table.columns[y_column_name]
 
             if not isinstance(y_column.data_type, agate.Number):
