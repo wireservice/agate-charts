@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
-import math
-
 from matplotlib import pyplot
 
 from agatecharts.charts import Bars, Columns, Lines, Scatter
-from agatecharts.utils import roundoff
+from agatecharts.utils import round_limits
 
 #: Default rendered chart size in inches
 DEFAULT_SIZE = (8, 8)
@@ -102,30 +100,7 @@ class TableCharts(object):
 
         x_min, x_max = chart.get_x_domain(self)
         y_min, y_max = chart.get_y_domain(self)
-
-        if x_min is not None:
-            if x_min < 0:
-                x_min = roundoff(x_max)
-            else:
-                x_min = 0
-
-        if x_max is not None and x_max != 0:
-            if x_max > 0:
-                x_max = roundoff(x_max)
-            else:
-                x_max = 0
-
-        if y_min is not None:
-            if y_min < 0:
-                y_min = roundoff(x_max)
-            else:
-                y_min = 0
-
-        if y_max is not None:
-            if y_max > 0:
-                y_max = roundoff(y_max)
-            else:
-                y_max = 0
+        x_min, x_max, y_min, y_max = round_limits(x_min, x_max, y_min, y_max)
 
         pyplot.figure(figsize=size, dpi=dpi)
         axes = pyplot.subplot(1, 1, 1)

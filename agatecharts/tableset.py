@@ -7,7 +7,7 @@ from matplotlib import pyplot
 
 from agatecharts.charts import Bars, Columns, Lines, Scatter
 from agatecharts.table import DEFAULT_DPI
-from agatecharts.utils import roundoff
+from agatecharts.utils import round_limits
 
 #: Default small multiple chart size in inches
 DEFAULT_MULTIPLE_SIZE = (4, 4)
@@ -83,29 +83,7 @@ class TableSetCharts(object):
             y_min = min(y_min, table_y_min)
             y_max = max(y_max, table_y_max)
 
-        if x_min is not None:
-            if x_min < 0:
-                x_min = roundoff(x_max)
-            else:
-                x_min = 0
-
-        if x_max is not None and x_max != 0:
-            if x_max > 0:
-                x_max = roundoff(x_max)
-            else:
-                x_max = 0
-
-        if y_min is not None:
-            if y_min < 0:
-                y_min = roundoff(x_max)
-            else:
-                y_min = 0
-
-        if y_max is not None:
-            if y_max > 0:
-                y_max = roundoff(y_max)
-            else:
-                y_max = 0
+        x_min, x_max, y_min, y_max = round_limits(x_min, x_max, y_min, y_max)
 
         i = 0
 
