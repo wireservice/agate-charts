@@ -18,6 +18,9 @@ class Lines(Chart):
         return len(self._y_column_names) > 1
 
     def get_x_domain(self, table):
+        if not isinstance(table.columns[self._x_column_name].data_type, agate.Number):
+            return (None, None)
+
         x_min = min(table.columns[self._x_column_name])
         x_max = max(table.columns[self._x_column_name])
 
