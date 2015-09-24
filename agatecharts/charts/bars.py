@@ -60,6 +60,7 @@ class Bars(Chart):
                 value_column,
                 bar_height,
                 color=colors.next(),
+                linewidth=0,
                 label=value_column_name
             )
 
