@@ -104,27 +104,43 @@ You can also choose to render the image directly to disk, by passing the :code:`
 Rendering multiple series
 =========================
 
-You may also want to render charts that compare to series of data. For instance, in this dataset the sulfur dioxide (:code:`so2`) and nitrogen oxide (:code:`nox`) amounts are on similar scales. Let's compare them with a bar chart:
+You may also want to render charts that compare to series of data. For instance, in this dataset the sulfur dioxide (:code:`so2`) and nitrogen oxide (:code:`nox`) amounts are on similar scales. Let's roll the data up by state and compare them with a bar chart:
 
-.. code-block: python
+.. code-block:: python
 
-    day_totals.bar_chart('day', ['so2', 'nox'])
+    states = emissions.group_by('State')
+    state_totals = states.aggregate([
+        ('so2', agate.Sum(), 'so2'),
+        ('co2', agate.Sum(), 'co2'),
+        ('noX', agate.Sum(), 'noX')
+    ])
+
+    state_totals.bar_chart('State', ['so2', 'noX'])
 
 .. image:: samples/bar_chart_complex.png
 
 Small multiples
 ===============
 
-TODO
+agate-charts most powerful feature comes when these same methods are applied to instances of agate's :class:`.TableSet`. In this case, agate-charts will automatically create small multiples of the chart for each table in the set. For example, here is a let's create a line chart of the :code:`co2` output for each state:
 
-Saving charts
-=============
+.. code-block:: python
 
-TODO
+    states.line_chart('day', 'co2')
+
+.. image:: samples/line_chart_simple_multiples.png
+
+Of course, you can also combine small multiples and multiple time series:
+
+.. code-block:: python
+
+    states.line_chart('day', ['so2', 'noX'])
+
+.. image:: samples/line_chart_complex_multiples.png
 
 Where to go next
 ================
 
-TODO
+agate-charts is designed for making quick exploratory charts that you don't put a lot of thought into. From here you might take your data into Illustrator, D3 or some other tool for creating a polished presentation.
 
-Link to proof
+If you enjoy using agate-charts you should also check out `proof <http://proof.readthedocs.org/en/latest/>`_, a library for building data processing pipelines that are repeatable and self-documenting. If you're rendering many charts it can save you tons of time by skipping ones you've already done.
