@@ -2,8 +2,14 @@
 API
 ===
 
-.. toctree::
-    :maxdepth: 2
+.. autofunction:: agatecharts.patch
 
-    api/table
-    api/tableset
+.. automodule:: agatecharts.table
+    :members:
+    :undoc-members:
+    :private-members:
+
+.. automodule:: agatecharts.tableset
+    :members:
+    :undoc-members:
+    :private-members:

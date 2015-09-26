@@ -34,15 +34,24 @@ You will now have a file named ``epa-emissions-20150910.csv`` in your ``agate_ch
 
     agate-charts plays nicely with `ipython <http://ipython.org/>`_, `Jupyter notebooks <https://jupyter.org/>`_ and derivative projects like Atom's `hydrogen plugin <https://atom.io/packages/hydrogen>`_. If you prefer to go through this tutorial in any of those environments all the examples will work the same. You may need to add :code:`%matplotlib inline` to the top of your scripts `as you would in an ipython notebook <https://ipython.org/ipython-doc/3/notebook/notebook.html#plotting>`_.
 
+Importing out dependencies
+==========================
+
+Our only dependencies for this tutorial will be agate and agate-charts. When we import :code:`agatecharts` we call its :func:`.patch` function, which attaches the :class:`.TableCharts` methods to :class:`.Table` and the :class:`.TableSetCharts` methods to :class:`.TableSet`.
+
+.. code-block:: python
+
+    import agate
+    import agatecharts
+
+    agatecharts.patch()
+
 Loading the data
 ================
 
 Now let's load the dataset into an :class:`.Table`. We'll use an :class:`.TypeTester` so that we don't have to specify every column, but we'll force the :code:` Date` column to be a date since it is in a known format.
 
 .. code-block:: python
-
-    import agate
-    import agatecharts
 
     tester = agate.TypeTester(force={
         ' Date': agate.Date('%Y-%m-%d')
@@ -85,7 +94,7 @@ Now let's render a line chart of the total :code:`co2`:
 
     day_totals.line_chart('day', 'co2')
 
-Notice that :code:`line_chart` is a method on the :class:`.Table`. When agate-charts is imported, it automatically adds :class:`.TableCharts` methods to :class:`.Table` and the :class:`.TableSetCharts` methods to :class:`.TableSet`.
+Notice that :code:`line_chart` is a method on the :class:`.Table`. Remember that when we imported :code:`agatecharts` with called :func:`.patch` which added :class:`.TableCharts` methods such as :meth:`.TableCharts.line_chart` to :class:`.Table` and the :class:`.TableSetCharts` methods to :class:`.TableSet`.
 
 If all goes well, you should see a window popup containing this image:
 

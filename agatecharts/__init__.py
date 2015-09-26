@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
-import agate
+def patch():
+    """
+    Patch the features of this library onto agate's core :class:`.Table` and :class:`.TableSet`.
+    """
+    import agate
+    from agatecharts.table import TableCharts
+    from agatecharts.tableset import TableSetCharts
 
-from agatecharts.charts import Bars, Columns, Lines, Scatter
-from agatecharts.table import TableCharts
-from agatecharts.tableset import TableSetCharts
-
-# Monkeypatch!
-agate.Table.monkeypatch(TableCharts)
-agate.TableSet.monkeypatch(TableSetCharts)
+    agate.Table.monkeypatch(TableCharts)
+    agate.TableSet.monkeypatch(TableSetCharts)
