@@ -21,8 +21,8 @@ class Columns(Chart):
         return (None, None)
 
     def get_y_domain(self, table):
-        y_min = min([min(table.columns[name].get_data_without_nulls()) for name in self._value_column_names])
-        y_max = max([max(table.columns[name].get_data_without_nulls()) for name in self._value_column_names])
+        y_min = min([min(table.columns[name].values_without_nulls()) for name in self._value_column_names])
+        y_max = max([max(table.columns[name].values_without_nulls()) for name in self._value_column_names])
 
         return y_min, y_max
 
