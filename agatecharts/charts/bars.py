@@ -18,8 +18,8 @@ class Bars(Chart):
         return len(self._value_column_names) > 1
 
     def get_x_domain(self, table):
-        x_min = min([min(table.columns[name].get_data_without_nulls()) for name in self._value_column_names])
-        x_max = max([max(table.columns[name].get_data_without_nulls()) for name in self._value_column_names])
+        x_min = min([min(table.columns[name].values_without_nulls()) for name in self._value_column_names])
+        x_max = max([max(table.columns[name].values_without_nulls()) for name in self._value_column_names])
 
         return x_min, x_max
 
