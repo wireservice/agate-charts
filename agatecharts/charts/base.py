@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-class Chart(object):
+class Chart:
     """
     Base class for a chart type.
     """

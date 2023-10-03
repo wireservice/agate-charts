@@ -12,7 +12,7 @@ DEFAULT_SIZE = (8, 8)
 DEFAULT_DPI = 72
 
 
-class TableCharts(object):
+class TableCharts:
     def bar_chart(self, label_column_name, value_column_names, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
         """
         Plots a bar chart.

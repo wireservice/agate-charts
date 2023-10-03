@@ -13,7 +13,7 @@ from agatecharts.utils import round_limits
 DEFAULT_MULTIPLE_SIZE = (4, 4)
 
 
-class TableSetCharts(object):
+class TableSetCharts:
     def bar_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
         """
         See :meth:`.TableCharts.bar_chart`.

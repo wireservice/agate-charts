@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # This file is execfile()d with the current directory set to its containing dir.
 #
@@ -11,7 +10,7 @@
 import os
 import sys
 
-import mock
+from unittest import mock
 
 MOCK_MODULES = ['numpy', 'matplotlib', 'matplotlib.pyplot']
 
@@ -51,8 +50,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'agate-charts'
-copyright = u'2015, Christopher Groskopf'
+project = 'agate-charts'
+copyright = '2015, Christopher Groskopf'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -196,8 +195,8 @@ htmlhelp_basename = 'agatecharts'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-    ('index', 'agatecharts.tex', u'agate-charts Documentation',
-     u'Christopher Groskopf', 'manual'),
+    ('index', 'agatecharts.tex', 'agate-charts Documentation',
+     'Christopher Groskopf', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
