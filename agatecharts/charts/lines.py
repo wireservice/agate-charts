@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import agate
 
 from agatecharts.charts.base import Chart

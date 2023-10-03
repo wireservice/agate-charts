@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 def Qualitative():
     """
     Color-blind safe qualitiative palette via
