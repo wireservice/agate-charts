@@ -1,6 +1,7 @@
 import csv
 import os
 import unittest
+
 import agate
 
 import agatecharts  # noqa: F401

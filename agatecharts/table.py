@@ -1,3 +1,4 @@
+import agate
 from matplotlib import pyplot
 
 from agatecharts.charts import Bars, Columns, Lines, Scatter
