@@ -65,10 +65,10 @@ Now let's compute a few derived columns in order to make our charting easier. Th
 .. code-block:: python
 
     emissions = emissions.compute([
-        (agate.Formula(agate.Number(), lambda r: r[' Date'].day), 'day'),
-        (agate.Formula(agate.Number(), lambda r: r[' SO2 (tons)'] or 0), 'so2'),
-        (agate.Formula(agate.Number(), lambda r: r[' NOx (tons)'] or 0), 'nox'),
-        (agate.Formula(agate.Number(), lambda r: r[' CO2 (short tons)'] or 0), 'co2')
+        ('day', agate.Formula(agate.Number(), lambda r: r[' Date'].day)),
+        ('so2', agate.Formula(agate.Number(), lambda r: r[' SO2 (tons)'] or 0)),
+        ('nox', agate.Formula(agate.Number(), lambda r: r[' NOx (tons)'] or 0)),
+        ('co2', agate.Formula(agate.Number(), lambda r: r[' CO2 (short tons)'] or 0))
     ])
 
 Of course, for analysis purposes you should always be extremely cautious in assuming that blank fields are equivalent to zero. For the purposes of this tutorial, we will assume this is a valid transformation.

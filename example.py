@@ -21,10 +21,10 @@ tester = agate.TypeTester(force={
 emissions = agate.Table.from_csv('examples/epa-emissions-20150910.csv', tester)
 
 emissions = emissions.compute([
-    (agate.Formula(agate.Number(), lambda r: r[' Date'].day), 'day'),
-    (agate.Formula(agate.Number(), lambda r: r[' SO2 (tons)'] or 0), 'so2'),
-    (agate.Formula(agate.Number(), lambda r: r[' NOx (tons)'] or 0), 'noX'),
-    (agate.Formula(agate.Number(), lambda r: r[' CO2 (short tons)'] or 0), 'co2')
+    ('day', agate.Formula(agate.Number(), lambda r: r[' Date'].day)),
+    ('so2', agate.Formula(agate.Number(), lambda r: r[' SO2 (tons)'] or 0)),
+    ('noX', agate.Formula(agate.Number(), lambda r: r[' NOx (tons)'] or 0)),
+    ('co2', agate.Formula(agate.Number(), lambda r: r[' CO2 (short tons)'] or 0))
 ])
 
 states = emissions.group_by('State')
