@@ -1,20 +1,16 @@
-#!/usr/bin/env python
+from setuptools import find_packages, setup
 
-from setuptools import setup
-
-install_requires = [
-    'six==1.6.1',
-    'agate>=0.8.0',
-    'matplotlib>=1.4.3'
-]
+with open('README.rst') as f:
+    long_description = f.read()
 
 setup(
     name='agate-charts',
     version='0.1.0',
     description='agate-charts adds exploratory charting support to agate.',
-    long_description=open('README').read(),
+    long_description=long_description,
+    long_description_content_type='text/x-rst',
     author='Christopher Groskopf',
-    author_email='staringmonkey@gmail.com',
+    author_email='chrisgroskopf@gmail.com',
     url='http://agate-charts.readthedocs.org/',
     license='MIT',
     classifiers=[
@@ -25,10 +21,11 @@ setup(
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Multimedia :: Graphics',
@@ -36,9 +33,15 @@ setup(
         'Topic :: Scientific/Engineering :: Visualization',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    packages=[
-        'agatecharts',
-        'agatecharts.charts'
+    packages=find_packages(exclude=['tests', 'tests.*']),
+    install_requires=[
+        'agate>=0.8.0',
+        'matplotlib>=1.4.3'
     ],
-    install_requires=install_requires
+    extras_require={
+        'test': [
+            'pytest',
+            'pytest-cov',
+        ],
+    }
 )
