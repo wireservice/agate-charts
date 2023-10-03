@@ -26,7 +26,7 @@ Let's start by creating a clean workspace::
 
 Now let's download the data::
 
-    curl -L -O https://raw.githubusercontent.com/onyxfish/agate-charts/master/examples/epa-emissions-20150910.csv
+    curl -L -O https://raw.githubusercontent.com/wireservice/agate-charts/master/examples/epa-emissions-20150910.csv
 
 You will now have a file named ``epa-emissions-20150910.csv`` in your ``agate_charts_tutorial`` directory.
 

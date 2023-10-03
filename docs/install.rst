@@ -14,7 +14,7 @@ Developers
 
 If you are a developer that also wants to hack on agate-charts, install it this way::
 
-    git clone git://github.com/onyxfish/agate-charts.git
+    git clone git://github.com/wireservice/agate-charts.git
     cd agate-charts
     mkvirtualenv agate-charts
     pip install -r requirements.txt

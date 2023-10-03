@@ -2,6 +2,7 @@
 
 from decimal import ROUND_CEILING, ROUND_FLOOR
 
+
 def round_limit(n):
     """
     Round a axis minimum or maximum to a suitable break point.
@@ -16,6 +17,7 @@ def round_limit(n):
         limit -= (10 ** magnitude) / 2
 
     return limit
+
 
 def round_limits(x_min, x_max, y_min, y_max):
     """

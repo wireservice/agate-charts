@@ -3,6 +3,7 @@
 import os
 
 import agate
+
 import agatecharts
 
 agatecharts.patch()
@@ -52,33 +53,33 @@ date_totals = dates.aggregate([
     ('noX', agate.Sum(), 'noX')
 ])
 
-print 'Simple charts'
+print('Simple charts')
 
 day_totals.line_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'line_chart_simple.png'))
 state_totals.column_chart('State', 'co2', filename=os.path.join(OUTPUT_DIR, 'column_chart_simple.png'))
 state_totals.bar_chart('State', 'co2', filename=os.path.join(OUTPUT_DIR, 'bar_chart_simple.png'))
 day_totals.scatter_chart('so2', 'noX', filename=os.path.join(OUTPUT_DIR, 'scatter_chart.png'))
 
-print 'Time series'
+print('Time series')
 
 date_totals.line_chart(' Date', 'co2', filename=os.path.join(OUTPUT_DIR, 'line_chart_dates.png'))
 date_totals.column_chart(' Date', 'co2', filename=os.path.join(OUTPUT_DIR, 'column_chart_dates.png'))
 date_totals.bar_chart(' Date', 'co2', filename=os.path.join(OUTPUT_DIR, 'bar_chart_dates.png'))
 
-print 'Multiple series'
+print('Multiple series')
 
 day_totals.line_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'line_chart_complex.png'))
 state_totals.column_chart('State', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'column_chart_complex.png'))
 state_totals.bar_chart('State', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'bar_chart_complex.png'))
 
-print 'Small multiples'
+print('Small multiples')
 
 states.line_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'line_chart_simple_multiples.png'))
 states.column_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'column_chart_simple_multiples.png'))
 states.bar_chart('day', 'co2', filename=os.path.join(OUTPUT_DIR, 'bar_chart_simple_multiples.png'))
 states.scatter_chart('so2', 'noX', filename=os.path.join(OUTPUT_DIR, 'scatter_chart_multiples.png'))
 
-print 'Small multiples with multiple series'
+print('Small multiples with multiple series')
 
 states.line_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'line_chart_complex_multiples.png'))
 states.column_chart('day', ['so2', 'noX'], filename=os.path.join(OUTPUT_DIR, 'column_chart_complex_multiples.png'))

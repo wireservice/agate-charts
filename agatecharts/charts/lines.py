@@ -5,11 +5,12 @@ import agate
 from agatecharts.charts.base import Chart
 from agatecharts.colors import Qualitative
 
+
 class Lines(Chart):
     def __init__(self, x_column_name, y_column_names):
         self._x_column_name = x_column_name
 
-        if isinstance(y_column_names, basestring):
+        if isinstance(y_column_names, str):
             y_column_names = [y_column_names]
 
         self._y_column_names = y_column_names
@@ -39,8 +40,8 @@ class Lines(Chart):
         x_column = table.columns[self._x_column_name]
 
         if not isinstance(x_column.data_type, agate.Number) and \
-            not isinstance(x_column.data_type, agate.Date) and \
-            not isinstance(x_column.data_type, agate.DateTime):
+                not isinstance(x_column.data_type, agate.Date) and \
+                not isinstance(x_column.data_type, agate.DateTime):
             raise ValueError('Only Number, Date and DateTime data are supported for line chart X-axis.')
 
         for y_column_name in self._y_column_names:

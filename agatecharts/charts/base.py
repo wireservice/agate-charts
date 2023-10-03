@@ -4,6 +4,7 @@ class Chart(object):
     """
     Base class for a chart type.
     """
+
     def show_legend(self):
         """
         Returns true if this chart should render a legend. (Usually if there

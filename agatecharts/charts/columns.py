@@ -5,11 +5,12 @@ import agate
 from agatecharts.charts.base import Chart
 from agatecharts.colors import Qualitative
 
+
 class Columns(Chart):
     def __init__(self, label_column_name, value_column_names):
         self._label_column_name = label_column_name
 
-        if isinstance(value_column_names, basestring):
+        if isinstance(value_column_names, str):
             value_column_names = [value_column_names]
 
         self._value_column_names = value_column_names
@@ -30,8 +31,8 @@ class Columns(Chart):
         label_column = table.columns[self._label_column_name]
 
         if not isinstance(label_column.data_type, agate.Text) and \
-            not isinstance(label_column.data_type, agate.Number) and \
-            not isinstance(label_column.data_type, agate.Date):
+                not isinstance(label_column.data_type, agate.Number) and \
+                not isinstance(label_column.data_type, agate.Date):
             raise ValueError('Only Text, Number and Date data are supported for bar chart labels.')
 
         positions = range(len(label_column))

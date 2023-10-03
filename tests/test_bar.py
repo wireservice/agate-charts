@@ -9,9 +9,11 @@ except ImportError:
     import unittest
 
 import agate
-import agatecharts
+
+import agatecharts  # noqa: F401
 
 TEST_FILENAME = '.test.png'
+
 
 class TestBarsChart(unittest.TestCase):
     def setUp(self):
@@ -51,7 +53,7 @@ class TestBarsChart(unittest.TestCase):
 
     def test_single(self):
         boys = self.table.where(lambda r: r['gender'] == 'male')
-        first_year = boys.where(lambda r: r['month'] < 73)
+        boys.where(lambda r: r['month'] < 73)
 
         self.table.bar_chart('month', 'median', filename=TEST_FILENAME)
 
@@ -59,7 +61,7 @@ class TestBarsChart(unittest.TestCase):
 
     def test_many(self):
         boys = self.table.where(lambda r: r['gender'] == 'male')
-        first_year = boys.where(lambda r: r['month'] < 73)
+        boys.where(lambda r: r['month'] < 73)
 
         self.table.bar_chart('month', ['median', 'stdev'], filename=TEST_FILENAME)
 

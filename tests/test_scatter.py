@@ -9,9 +9,11 @@ except ImportError:
     import unittest
 
 import agate
-import agatecharts
+
+import agatecharts  # noqa: F401
 
 TEST_FILENAME = '.test.png'
+
 
 class TestScatterChart(unittest.TestCase):
     def setUp(self):

@@ -4,6 +4,7 @@ import agate
 
 from agatecharts.charts.base import Chart
 
+
 class Scatter(Chart):
     def __init__(self, x_column_name, y_column_name):
         self._x_column_name = x_column_name

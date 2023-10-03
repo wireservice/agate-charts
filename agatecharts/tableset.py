@@ -12,6 +12,7 @@ from agatecharts.utils import round_limits
 #: Default small multiple chart size in inches
 DEFAULT_MULTIPLE_SIZE = (4, 4)
 
+
 class TableSetCharts(object):
     def bar_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
         """
