@@ -29,9 +29,9 @@ emissions = emissions.compute([
 
 states = emissions.group_by('State')
 state_totals = states.aggregate([
-    ('so2', agate.Sum(), 'so2'),
-    ('co2', agate.Sum(), 'co2'),
-    ('noX', agate.Sum(), 'noX')
+    ('so2', agate.Sum('so2')),
+    ('co2', agate.Sum('co2')),
+    ('noX', agate.Sum('noX'))
 ])
 
 new_york = states['NY']
@@ -39,16 +39,16 @@ new_york = states['NY']
 # NB: key_type shouldn't be necessary--agate bug #234
 days = emissions.group_by('day', key_type=agate.Number())
 day_totals = days.aggregate([
-    ('so2', agate.Sum(), 'so2'),
-    ('co2', agate.Sum(), 'co2'),
-    ('noX', agate.Sum(), 'noX')
+    ('so2', agate.Sum('so2')),
+    ('co2', agate.Sum('co2')),
+    ('noX', agate.Sum('noX'))
 ])
 
 dates = emissions.group_by(' Date', key_type=agate.Date('%Y-%m-%d'))
 date_totals = dates.aggregate([
-    ('so2', agate.Sum(), 'so2'),
-    ('co2', agate.Sum(), 'co2'),
-    ('noX', agate.Sum(), 'noX')
+    ('so2', agate.Sum('so2')),
+    ('co2', agate.Sum('co2')),
+    ('noX', agate.Sum('noX'))
 ])
 
 print('Simple charts')

@@ -82,9 +82,9 @@ The emissions dataset includes data for several states. We'll look at the states
 
     days = emissions.group_by('day', key_type=agate.Number())
     day_totals = days.aggregate([
-        ('so2', agate.Sum(), 'so2'),
-        ('co2', agate.Sum(), 'co2'),
-        ('nox', agate.Sum(), 'nox')
+        ('so2', agate.Sum('so2')),
+        ('co2', agate.Sum('co2')),
+        ('nox', agate.Sum('nox'))
     ])
 
 The :code:`day_totals` table now contains total counts of each type of emission. Note that we don't know if this data is comprehensive so we shouldn't assume these are national totals. (In fact, I know that they aren't for reasons that will become obvious shortly.)
@@ -120,9 +120,9 @@ You may also want to render charts that compare to series of data. For instance,
 
     states = emissions.group_by('State')
     state_totals = states.aggregate([
-        ('so2', agate.Sum(), 'so2'),
-        ('co2', agate.Sum(), 'co2'),
-        ('noX', agate.Sum(), 'noX')
+        ('so2', agate.Sum('so2')),
+        ('co2', agate.Sum('co2')),
+        ('noX', agate.Sum('noX'))
     ])
 
     state_totals.bar_chart('State', ['so2', 'noX'])
