@@ -2,8 +2,6 @@
 API
 ===
 
-.. autofunction:: agatecharts.patch
-
 .. automodule:: agatecharts.table
     :members:
     :undoc-members:

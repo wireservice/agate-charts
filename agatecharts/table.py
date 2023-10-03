@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from matplotlib import pyplot
 
 from agatecharts.charts import Bars, Columns, Lines, Scatter
@@ -12,119 +10,128 @@ DEFAULT_SIZE = (8, 8)
 DEFAULT_DPI = 72
 
 
-class TableCharts:
-    def bar_chart(self, label_column_name, value_column_names, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
-        """
-        Plots a bar chart.
+def bar_chart(self, label_column_name, value_column_names, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
+    """
+    Plots a bar chart.
 
-        See :meth:`TableCharts._plot` for an explanation of keyword arguments.
+    See :meth:`agatecharts.table.plot` for an explanation of keyword arguments.
 
-        :param label_column_name: The name of a column in the source to be used for
-            the vertical axis labels. Must refer to a column containing
-            :class:`.Text`, :class:`.Number` or :class:`.Date` data.
-        :param value_column_names: One or more column names in the source, each of
-            which will used to define the horizontal width of a bar. Must refer to a
-            column containing :class:`.Number` data.
-        """
-        chart = Bars(label_column_name, value_column_names)
+    :param label_column_name: The name of a column in the source to be used for
+        the vertical axis labels. Must refer to a column containing
+        :class:`.Text`, :class:`.Number` or :class:`.Date` data.
+    :param value_column_names: One or more column names in the source, each of
+        which will used to define the horizontal width of a bar. Must refer to a
+        column containing :class:`.Number` data.
+    """
+    chart = Bars(label_column_name, value_column_names)
 
-        self._plot(chart, filename, size, dpi)
+    plot(self, chart, filename, size, dpi)
 
-    def column_chart(self, label_column_name, value_column_names, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
-        """
-        Plots a column chart.
 
-        See :meth:`TableCharts._plot` for an explanation of keyword arguments.
+def column_chart(self, label_column_name, value_column_names, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
+    """
+    Plots a column chart.
 
-        :param label_column_name: The name of a column in the source to be used for
-            the horizontal axis labels. Must refer to a column containing
-            :class:`.Text`, :class:`.Number` or :class:`.Date` data.
-        :param value_column_names: One or more column names in the source, each of
-            which will used to define the vertical height of a bar. Must refer to a
-            column containing :class:`.Number` data.
-        """
-        chart = Columns(label_column_name, value_column_names)
+    See :meth:`agatecharts.table.plot` for an explanation of keyword arguments.
 
-        self._plot(chart, filename, size, dpi)
+    :param label_column_name: The name of a column in the source to be used for
+        the horizontal axis labels. Must refer to a column containing
+        :class:`.Text`, :class:`.Number` or :class:`.Date` data.
+    :param value_column_names: One or more column names in the source, each of
+        which will used to define the vertical height of a bar. Must refer to a
+        column containing :class:`.Number` data.
+    """
+    chart = Columns(label_column_name, value_column_names)
 
-    def line_chart(self, x_column_name, y_column_names, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
-        """
-        Plots a line chart.
+    plot(self, chart, filename, size, dpi)
 
-        See :meth:`TableCharts._plot` for an explanation of keyword arguments.
 
-        :param x_column_name: The name of a column in the source to be used for
-            the horizontal axis. May refer to a column containing
-            :class:`.Number`, :class:`.Date` or :class:`.DateTime`
-            data.
-        :param y_column_names: A sequence of column names in the source, each of
-            which will be used for the vertical axis. Must refer to a column with
-            :class:`.Number` data.
-        """
-        chart = Lines(x_column_name, y_column_names)
+def line_chart(self, x_column_name, y_column_names, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
+    """
+    Plots a line chart.
 
-        self._plot(chart, filename, size, dpi)
+    See :meth:`agatecharts.table.plot` for an explanation of keyword arguments.
 
-    def scatter_chart(self, x_column_name, y_column_name, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
-        """
-        Plots a scatter plot.
+    :param x_column_name: The name of a column in the source to be used for
+        the horizontal axis. May refer to a column containing
+        :class:`.Number`, :class:`.Date` or :class:`.DateTime`
+        data.
+    :param y_column_names: A sequence of column names in the source, each of
+        which will be used for the vertical axis. Must refer to a column with
+        :class:`.Number` data.
+    """
+    chart = Lines(x_column_name, y_column_names)
 
-        See :meth:`TableCharts._plot` for an explanation of keyword arguments.
+    plot(self, chart, filename, size, dpi)
 
-        :param x_column_name: Column containing X values for the points to plot.
-            Must refer to a column containg :class:`.Number` data.
-        :param y_column_name: Column containing Y values for the points to plot.
-            Must refer to a column containg :class:`.Number` data.
-        """
-        chart = Scatter(x_column_name, y_column_name)
 
-        self._plot(chart, filename, size, dpi)
+def scatter_chart(self, x_column_name, y_column_name, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
+    """
+    Plots a scatter plot.
 
-    def _plot(self, chart, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
-        """
-        Execute a plot of this :class:`.Table`.
+    See :meth:`agatecharts.table.plot` for an explanation of keyword arguments.
 
-        This method should not be called directly by the user.
+    :param x_column_name: Column containing X values for the points to plot.
+        Must refer to a column containg :class:`.Number` data.
+    :param y_column_name: Column containing Y values for the points to plot.
+        Must refer to a column containg :class:`.Number` data.
+    """
+    chart = Scatter(x_column_name, y_column_name)
 
-        :param chart: An chart class to render.
-        :param filename: A filename to render to. If not specified will render
-            to screen in "interactive mode".
-        :param size: A (width, height) tuple in inches defining the size of the
-            canvas to render to.
-        :param dpi: A number defining the pixels-per-inch to render.
-        """
-        if chart.show_legend():
-            size = (
-                size[0] * 1.2,
-                size[1]
-            )
+    plot(self, chart, filename, size, dpi)
 
-        x_min, x_max = chart.get_x_domain(self)
-        y_min, y_max = chart.get_y_domain(self)
-        x_min, x_max, y_min, y_max = round_limits(x_min, x_max, y_min, y_max)
 
-        pyplot.figure(figsize=size, dpi=dpi)
-        axes = pyplot.subplot(1, 1, 1)
+def plot(table, chart, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
+    """
+    Execute a plot of this :class:`.Table`.
 
-        chart.plot(self, axes)
+    This method should not be called directly by the user.
 
-        pyplot.grid(b=True, which='major', color='0.85', linestyle='-')
-        axes.set_axisbelow(True)
+    :param chart: An chart class to render.
+    :param filename: A filename to render to. If not specified will render
+        to screen in "interactive mode".
+    :param size: A (width, height) tuple in inches defining the size of the
+        canvas to render to.
+    :param dpi: A number defining the pixels-per-inch to render.
+    """
+    if chart.show_legend():
+        size = (
+            size[0] * 1.2,
+            size[1]
+        )
 
-        # matplotlib won't accept Decimal for limit values
-        if x_min is not None and x_max is not None:
-            axes.set_xlim(float(x_min), float(x_max))
+    x_min, x_max = chart.get_x_domain(table)
+    y_min, y_max = chart.get_y_domain(table)
+    x_min, x_max, y_min, y_max = round_limits(x_min, x_max, y_min, y_max)
 
-        if y_min is not None and y_max is not None:
-            axes.set_ylim(float(y_min), float(y_max))
+    pyplot.figure(figsize=size, dpi=dpi)
+    axes = pyplot.subplot(1, 1, 1)
 
-        if chart.show_legend():
-            bbox = axes.get_position()
-            axes.set_position([bbox.x0, bbox.y0, bbox.width / 1.2, bbox.height])
+    chart.plot(table, axes)
 
-            axes.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    pyplot.grid(b=True, which='major', color='0.85', linestyle='-')
+    axes.set_axisbelow(True)
 
-        if filename:
-            pyplot.savefig(filename)
-        else:
-            pyplot.show()
+    # matplotlib won't accept Decimal for limit values
+    if x_min is not None and x_max is not None:
+        axes.set_xlim(float(x_min), float(x_max))
+
+    if y_min is not None and y_max is not None:
+        axes.set_ylim(float(y_min), float(y_max))
+
+    if chart.show_legend():
+        bbox = axes.get_position()
+        axes.set_position([bbox.x0, bbox.y0, bbox.width / 1.2, bbox.height])
+
+        axes.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+
+    if filename:
+        pyplot.savefig(filename)
+    else:
+        pyplot.show()
+
+
+agate.Table.bar_chart = bar_chart
+agate.Table.column_chart = column_chart
+agate.Table.line_chart = line_chart
+agate.Table.scatter_chart = scatter_chart

@@ -37,14 +37,12 @@ You will now have a file named ``epa-emissions-20150910.csv`` in your ``agate_ch
 Importing out dependencies
 ==========================
 
-Our only dependencies for this tutorial will be agate and agate-charts. When we import :code:`agatecharts` we call its :func:`.patch` function, which attaches the :class:`.TableCharts` methods to :class:`.Table` and the :class:`.TableSetCharts` methods to :class:`.TableSet`.
+Our only dependencies for this tutorial will be agate and agate-charts. Importing :code:`agatecharts` attaches the :mod:`agatecharts.table` methods to :class:`.Table` and the :mod:`agatecharts.tableset` methods to :class:`.TableSet`.
 
 .. code-block:: python
 
     import agate
     import agatecharts
-
-    agatecharts.patch()
 
 Loading the data
 ================
@@ -94,7 +92,7 @@ Now let's render a line chart of the total :code:`co2`:
 
     day_totals.line_chart('day', 'co2')
 
-Notice that :code:`line_chart` is a method on the :class:`.Table`. Remember that when we imported :code:`agatecharts` with called :func:`.patch` which added :class:`.TableCharts` methods such as :meth:`.TableCharts.line_chart` to :class:`.Table` and the :class:`.TableSetCharts` methods to :class:`.TableSet`.
+Notice that :code:`line_chart` is a method on the :class:`.Table`. Remember that importing :code:`agatecharts` added the :mod:`agatecharts.table` methods such as :meth:`agatecharts.table.line_chart` to :class:`.Table` and the :mod:`agatecharts.tableset` methods to :class:`.TableSet`.
 
 If all goes well, you should see a window popup containing this image:
 

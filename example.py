@@ -6,8 +6,6 @@ import agate
 
 import agatecharts
 
-agatecharts.patch()
-
 OUTPUT_DIR = 'docs/samples'
 
 if not os.path.exists(OUTPUT_DIR):

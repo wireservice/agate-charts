@@ -4,7 +4,6 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 import os
 import sys
-
 from unittest import mock
 
 MOCK_MODULES = ['numpy', 'matplotlib', 'matplotlib.pyplot']
