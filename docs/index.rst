@@ -2,10 +2,7 @@
 agate-charts |release|
 ======================
 
-About
-=====
-
-.. include:: ../README
+.. include:: ../README.rst
 
 Why agate-charts?
 =================
@@ -18,13 +15,23 @@ Why agate-charts?
 
 .. image:: samples/line_chart_complex_multiples.png
 
+Install
+=======
+
+To install:
+
+.. code-block:: bash
+
+    pip install agate-charts
+
+For details on development or supported platforms see the `agate documentation <https://agate.readthedocs.org>`_.
+
 Table of contents
 =================
 
 .. toctree::
     :maxdepth: 2
 
-    install
     tutorial
     samples
     api
@@ -32,17 +39,17 @@ Table of contents
 Authors
 =======
 
-.. include:: ../AUTHORS
+.. include:: ../AUTHORS.rst
+
+Changelog
+=========
+
+.. include:: ../CHANGELOG.rst
 
 License
 =======
 
 .. include:: ../COPYING
-
-Changelog
-=========
-
-.. include:: ../CHANGELOG
 
 Indices and tables
 ==================

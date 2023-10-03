@@ -9,24 +9,27 @@ agate-charts is an extension for the `agate <http://agate.readthedocs.org/>`_ da
 
 In this tutorial we will use agate-charts to explore a `time-series dataset from the EPA <http://ampd.epa.gov/ampd/>`_ documenting US greenhouse gas emissions for the month of June 2015.
 
-Installing agate-charts
-=======================
-
-.. code-block:: bash
-
-    pip install agate-charts
-
 Getting setup
 =============
 
-Let's start by creating a clean workspace::
+Let's start by creating a clean workspace:
+
+.. code-block:: bash
 
     mkdir agate_charts_tutorial
     cd agate_charts_tutorial
 
-Now let's download the data::
+Now let's download the data:
+
+.. code-block:: bash
 
     curl -L -O https://raw.githubusercontent.com/wireservice/agate-charts/master/examples/epa-emissions-20150910.csv
+
+Install agate-charts:
+
+.. code-block:: bash
+
+    pip install agate-charts
 
 You will now have a file named ``epa-emissions-20150910.csv`` in your ``agate_charts_tutorial`` directory.
 
@@ -88,7 +91,7 @@ The :code:`day_totals` table now contains total counts of each type of emission.
 
 Now let's render a line chart of the total :code:`co2`:
 
-.. code-block: python
+.. code-block:: python
 
     day_totals.line_chart('day', 'co2')
 
@@ -100,7 +103,7 @@ If all goes well, you should see a window popup containing this image:
 
 You can also choose to render the image directly to disk, by passing the :code:`filename` argument:
 
-.. code-block: python
+.. code-block:: python
 
     day_totals.line_chart('day', 'co2', filename='totals.png')
 
