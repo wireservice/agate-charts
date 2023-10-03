@@ -1,0 +1,11 @@
+include *.py
+include *.rst
+include COPYING
+recursive-include docs *.png
+recursive-include docs *.py
+recursive-include docs *.rst
+recursive-include docs *.txt
+recursive-include docs Makefile
+recursive-include examples *.csv
+recursive-include tests *.py
+exclude .readthedocs.yaml
