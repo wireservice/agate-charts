@@ -5,7 +5,7 @@ with open('README.rst') as f:
 
 setup(
     name='agate-charts',
-    version='0.1.0',
+    version='0.1.1',
     description='agate-charts adds exploratory charting support to agate.',
     long_description=long_description,
     long_description_content_type='text/x-rst',
