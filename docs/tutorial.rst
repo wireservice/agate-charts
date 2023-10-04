@@ -2,15 +2,12 @@
 Tutorial
 ========
 
-About agate-charts
-==================
-
 agate-charts is an extension for the `agate <http://agate.readthedocs.org/>`_ data analysis library that adds support for quickly exploring data using charts. It does not create polished or publication-ready graphics. If you haven't used agate before, please read the `agate tutorial <http://agate.readthedocs.org/>`_ before reading this.
 
 In this tutorial we will use agate-charts to explore a `time-series dataset from the EPA <http://ampd.epa.gov/ampd/>`_ documenting US greenhouse gas emissions for the month of June 2015.
 
-Getting setup
-=============
+Setup
+=====
 
 Let's start by creating a clean workspace:
 
@@ -25,7 +22,7 @@ Now let's download the data:
 
     curl -L -O https://raw.githubusercontent.com/wireservice/agate-charts/master/examples/epa-emissions-20150910.csv
 
-Install agate-charts:
+And install agate-charts:
 
 .. code-block:: bash
 
@@ -37,8 +34,8 @@ You will now have a file named ``epa-emissions-20150910.csv`` in your ``agate_ch
 
     agate-charts plays nicely with `ipython <http://ipython.org/>`_, `Jupyter notebooks <https://jupyter.org/>`_ and derivative projects like Atom's `hydrogen plugin <https://atom.io/packages/hydrogen>`_. If you prefer to go through this tutorial in any of those environments all the examples will work the same. You may need to add :code:`%matplotlib inline` to the top of your scripts `as you would in an ipython notebook <https://ipython.org/ipython-doc/3/notebook/notebook.html#plotting>`_.
 
-Importing out dependencies
-==========================
+Import dependencies
+===================
 
 Our only dependencies for this tutorial will be agate and agate-charts. Importing :code:`agatecharts` attaches the :mod:`agatecharts.table` methods to :class:`.Table` and the :mod:`agatecharts.tableset` methods to :class:`.TableSet`.
 
@@ -47,8 +44,8 @@ Our only dependencies for this tutorial will be agate and agate-charts. Importin
     import agate
     import agatecharts
 
-Loading the data
-================
+Load data
+=========
 
 Now let's load the dataset into an :class:`.Table`. We'll use an :class:`.TypeTester` so that we don't have to specify every column, but we'll force the :code:` Date` column to be a date since it is in a known format.
 
@@ -111,8 +108,8 @@ You can also choose to render the image directly to disk, by passing the :code:`
 
     agate-charts uses `matplotlib <http://matplotlib.org/>`_ to render charts. Matplotlib is a notoriously complicated and finicky piece of software. agate-charts attempts to abstract away all the messiest bits, but you may still have issues with charts not rendering on your particular platform. If the script hangs, or you don't see any output, try `specifying a rendering backend <http://matplotlib.org/faq/usage_faq.html#what-is-a-backend>`_ *before* importing agate-charts. This shouldn't be an issue if you're rendering to files.
 
-Rendering multiple series
-=========================
+Render multiple series
+======================
 
 You may also want to render charts that compare to series of data. For instance, in this dataset the sulfur dioxide (:code:`so2`) and nitrogen oxide (:code:`nox`) amounts are on similar scales. Let's roll the data up by state and compare them with a bar chart:
 

@@ -17,7 +17,7 @@ def bar_chart(self, label_column_name, value_column_names, filename=None, size=N
     """
     chart = Bars(label_column_name, value_column_names)
 
-    _plot(self, chart, filename, size, dpi)
+    plot(self, chart, filename, size, dpi)
 
 
 def column_chart(self, label_column_name, value_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
@@ -26,7 +26,7 @@ def column_chart(self, label_column_name, value_column_names, filename=None, siz
     """
     chart = Columns(label_column_name, value_column_names)
 
-    _plot(self, chart, filename, size, dpi)
+    plot(self, chart, filename, size, dpi)
 
 
 def line_chart(self, x_column_name, y_column_names, filename=None, size=None, dpi=DEFAULT_DPI):
@@ -35,7 +35,7 @@ def line_chart(self, x_column_name, y_column_names, filename=None, size=None, dp
     """
     chart = Lines(x_column_name, y_column_names)
 
-    _plot(self, chart, filename, size, dpi)
+    plot(self, chart, filename, size, dpi)
 
 
 def scatter_chart(self, x_column_name, y_column_name, filename=None, size=None, dpi=DEFAULT_DPI):
@@ -44,10 +44,10 @@ def scatter_chart(self, x_column_name, y_column_name, filename=None, size=None, 
     """
     chart = Scatter(x_column_name, y_column_name)
 
-    _plot(self, chart, filename, size, dpi)
+    plot(self, chart, filename, size, dpi)
 
 
-def _plot(tableset, chart, filename=None, size=None, dpi=DEFAULT_DPI):
+def plot(tableset, chart, filename=None, size=None, dpi=DEFAULT_DPI):
     """
     See :meth:`agatecharts.table.plot`.
     """
