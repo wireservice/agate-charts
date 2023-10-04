@@ -80,10 +80,10 @@ def plot(tableset, chart, filename=None, size=None, dpi=DEFAULT_DPI):
         table_x_min, table_x_max = chart.get_x_domain(table)
         table_y_min, table_y_max = chart.get_y_domain(table)
 
-        x_min = min(x_min, table_x_min)
-        x_max = max(x_max, table_x_max)
-        y_min = min(y_min, table_y_min)
-        y_max = max(y_max, table_y_max)
+        x_min = min(filter(None, [x_min, table_x_min]))
+        x_max = max(filter(None, [x_max, table_x_max]))
+        y_min = min(filter(None, [y_min, table_y_min]))
+        y_max = max(filter(None, [y_max, table_y_max]))
 
     x_min, x_max, y_min, y_max = round_limits(x_min, x_max, y_min, y_max)
 
