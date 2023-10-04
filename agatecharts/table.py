@@ -110,7 +110,7 @@ def plot(table, chart, filename=None, size=DEFAULT_SIZE, dpi=DEFAULT_DPI):
 
     chart.plot(table, axes)
 
-    pyplot.grid(b=True, which='major', color='0.85', linestyle='-')
+    pyplot.grid(visible=True, which='major', color='0.85', linestyle='-')
     axes.set_axisbelow(True)
 
     # matplotlib won't accept Decimal for limit values

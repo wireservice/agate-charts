@@ -96,7 +96,7 @@ def plot(tableset, chart, filename=None, size=None, dpi=DEFAULT_DPI):
 
         pyplot.title(key)
 
-        pyplot.grid(b=True, which='major', color='0.85', linestyle='-')
+        pyplot.grid(visible=True, which='major', color='0.85', linestyle='-')
         axes.set_axisbelow(True)
 
         # matplotlib won't accept Decimal for limit values
