@@ -16,10 +16,11 @@ jobs:
           cache: pip
           cache-dependency-path: setup.py
       - name: Install zlib (Windows)
-        if: matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-latest' && matrix.python-version == 'pypy-3.7'
         run: |
           iwr -useb get.scoop.sh -outfile 'install.ps1'
           .\install.ps1 -RunAsAdmin
+          scoop bucket add extras
           scoop install zlib
       - run: pip install .[test] coveralls
       - run: pytest --cov agatecharts
