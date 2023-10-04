@@ -34,7 +34,7 @@ class Bars(Chart):
             raise ValueError('Only Text, Number and Date data are supported for bar chart labels.')
 
         series_count = len(self._value_column_names)
-        positions = range(len(label_column))
+        positions = list(range(len(label_column)))
         colors = Qualitative()
         legend_bars = []
         bar_area = 0.65
