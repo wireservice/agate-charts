@@ -15,6 +15,12 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: setup.py
+      - name: Install zlib (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          iwr -useb get.scoop.sh -outfile 'install.ps1'
+          .\install.ps1 -RunAsAdmin
+          scoop install zlib
       - run: pip install .[test] coveralls
       - run: pytest --cov agatecharts
       - env:
