@@ -58,7 +58,7 @@ class Bars(Chart):
                 series_positions,
                 value_column,
                 bar_height,
-                color=colors.next(),
+                color=next(colors),
                 linewidth=0,
                 label=value_column_name
             )

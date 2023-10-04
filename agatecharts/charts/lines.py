@@ -52,7 +52,7 @@ class Lines(Chart):
                 x_column,
                 y_column,
                 linewidth=2,
-                color=colors.next(),
+                color=next(colors),
                 label=y_column_name
             )
 
