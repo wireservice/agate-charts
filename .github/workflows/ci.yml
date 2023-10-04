@@ -8,6 +8,9 @@ jobs:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
         python-version: [3.7, 3.8, 3.9, '3.10', '3.11', pypy-3.7]
+        exclude:
+          - os: windows-latest
+            python-version: pypy-3.7
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -15,13 +18,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: setup.py
-      - name: Install zlib (Windows)
-        if: matrix.os == 'windows-latest' && matrix.python-version == 'pypy-3.7'
-        run: |
-          iwr -useb get.scoop.sh -outfile 'install.ps1'
-          .\install.ps1 -RunAsAdmin
-          scoop bucket add extras
-          scoop install zlib
       - run: pip install .[test] coveralls
       - run: pytest --cov agatecharts
       - env:
