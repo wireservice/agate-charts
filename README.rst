@@ -2,6 +2,10 @@
     :target: https://github.com/wireservice/agate-charts/actions
     :alt: Build status
 
+.. image:: https://coveralls.io/repos/wireservice/agate-charts/badge.svg?branch=master
+    :target: https://coveralls.io/r/wireservice/agate-charts
+    :alt: Coverage status
+
 .. image:: https://img.shields.io/pypi/dw/agate-charts.svg
     :target: https://pypi.python.org/pypi/agate-charts
     :alt: PyPI downloads
