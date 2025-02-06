@@ -8,6 +8,11 @@ jobs:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
         python-version: [3.8, 3.9, '3.10', '3.11', '3.12', pypy-3.10]
+        exclude:
+          # from matplotlib import _api, _c_internal_utils
+          # ImportError: The specified module could not be found
+          - os: windows-latest
+            python-version: pypy-3.10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
