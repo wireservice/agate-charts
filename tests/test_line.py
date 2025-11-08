@@ -3,6 +3,10 @@ import os
 import unittest
 
 import agate
+import matplotlib
+
+# https://github.com/brainglobe/brainglobe-heatmap/issues/98
+matplotlib.use("Agg")
 
 import agatecharts  # noqa: F401
 
