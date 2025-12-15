@@ -7,12 +7,12 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
-        python-version: [3.8, 3.9, '3.10', '3.11', '3.12', pypy-3.10]
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14', pypy-3.11]
         exclude:
           # from matplotlib import _api, _c_internal_utils
           # ImportError: The specified module could not be found
           - os: windows-latest
-            python-version: pypy-3.10
+            python-version: pypy-3.11
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -20,7 +20,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: setup.py
-      - if: matrix.os == 'ubuntu-latest' && matrix.python-version == 'pypy-3.10'
+      - if: matrix.os == 'ubuntu-latest' && matrix.python-version == 'pypy-3.11'
         run: |
           sudo apt update
           sudo apt install libjpeg-dev

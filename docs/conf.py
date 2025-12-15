@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 project = 'agate-charts'
 copyright = '2015, Christopher Groskopf'
-version = '0.1.2'
+version = '0.1.3'
 release = version
 
 # -- General configuration ---------------------------------------------------

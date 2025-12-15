@@ -1,3 +1,8 @@
+0.1.3 - December 15, 2025
+-------------------------
+
+* Add Python 3.13 and 3.14 support. Drop support for end-of-life versions 3.8 and 3.9.
+
 0.1.2 - February 23, 2024
 -------------------------
 
