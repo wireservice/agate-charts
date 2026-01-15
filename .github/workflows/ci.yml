@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
-          cache-dependency-path: setup.py
+          cache-dependency-path: pyproject.toml
       - if: matrix.os == 'ubuntu-latest' && matrix.python-version == 'pypy-3.11'
         run: |
           sudo apt update
